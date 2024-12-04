@@ -66,7 +66,15 @@ const SignUpForm = () => {
   
       setSuccess(true);
       console.log('User created successfully');
-       // Redirect to user dashboard after successful submission
+      
+    // Get the token from the response (assuming it's returned in JSON format)
+    const data = await response.json();
+    const { token } = data; // Adjust according to your response structure
+
+    // Store the token in local storage (not recommended for sensitive info)
+    localStorage.setItem('jwtToken', token);
+    
+    // Redirect to the dashboard
     navigate('/userdashboard');
     } catch (error) {
       setError(error.message || 'An error occurred while creating the user.');

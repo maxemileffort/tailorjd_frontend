@@ -1,25 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Navbar from '../components/Navbar';
-import LoginForm from '../components/LoginForm';
+import PasswordRequestForm from '../components/PasswordRequestForm';
 import { Box, Typography } from '@mui/material';
 
-const Login = () => {
+const PasswordRequest = () => {
   return (
     <>
       <Navbar />
-      <LoginForm />
+      <PasswordRequestForm />
       
       <Box sx={{ textAlign: 'center', mt: 4 }}>
         <Typography variant="body2">
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </Typography>
-        <Typography variant="body2" sx={{ mt: 1 }}>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
+          Or you can <Link to="/login">login here.</Link>
         </Typography>
       </Box>
     </>
   );
 };
 
-export default Login;
+export default PasswordRequest;

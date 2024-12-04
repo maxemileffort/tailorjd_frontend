@@ -8,6 +8,7 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material';
+import SimpleFooter from '../components/FooterSimple';
 
 const drawerWidth = 240;
 
@@ -40,13 +41,13 @@ const UserDashboard = () => {
             <ListItemText primary="Profile" />
           </ListItem>
           <ListItem button>
-            <ListItemText primary="Workspace" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Settings" />
+            <ListItemText primary="Doc Collections" />
           </ListItem>
           <ListItem button>
             <ListItemText primary="Learning" />
+          </ListItem>
+          <ListItem button>
+            <ListItemText primary="Settings" />
           </ListItem>
           <ListItem button>
             <ListItemText primary="Support" />
@@ -76,14 +77,7 @@ const UserDashboard = () => {
         </Box>
 
         {/* Simplified Footer */}
-        <Box mt={4} textAlign="right"> {/* Right-align footer */}
-          <Typography variant="body2" color="textSecondary">
-            © {new Date().getFullYear()} TailorJD. All rights reserved.
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            Made with ❤️ by TailorJD Team
-          </Typography>
-        </Box>
+        <SimpleFooter />
       </Box>
     </Box>
   );
