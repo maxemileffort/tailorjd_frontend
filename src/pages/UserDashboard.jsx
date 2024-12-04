@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   CssBaseline,
@@ -9,76 +9,79 @@ import {
   Typography,
 } from '@mui/material';
 import SimpleFooter from '../components/FooterSimple';
+import DashboardSidebar from '../components/DashboardSidebar';
+import Profile from '../components/Profile';
+import DocCollections from '../components/DocCollections';
+import Workspace from '../components/Workspace';
+import Learning from '../components/Learning';
+import Settings from '../components/Settings';
+import Support from '../components/Support';
 
-const drawerWidth = 240;
+const drawerWidth = 60;
 
 const UserDashboard = () => {
+  const [selectedComponent, setSelectedComponent] = useState('home'); // Default component
+  
+  // Function to handle sidebar item clicks
+  const handleSidebarSelection = (component) => {
+    setSelectedComponent(component);
+  };
+  
+  // Function to render different components based on the selected option
+  const renderComponent = () => {
+    switch (selectedComponent) {
+      case 'profile':
+        return <Profile />;
+      case 'docCollections':
+        return <DocCollections />;
+      case 'workspace':
+        return <Workspace />;
+      case 'learning':
+        return <Learning />;
+      case 'settings':
+        return <Settings />;
+      case 'support':
+        return <Support />;
+      default:
+        return (
+          <Box>
+            <Typography variant="h4" gutterBottom>
+              Welcome to Your Dashboard
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              Placeholder content for the dashboard main area.
+            </Typography>
+          </Box>
+        );
+    }
+  };
+  
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-      <CssBaseline />
+    <CssBaseline />
+    
+    {/* Sidebar */}
 
-      {/* Sidebar */}
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            background: 'linear-gradient(180deg, #1E3A8A, #1D4ED8)', // Gradient background
-            color: 'white', // White text color
-          },
-        }}
-      >
-        <Box sx={{ padding: 2, textAlign: 'center' }}>
-          <Typography variant="h6" noWrap>
-            TailorJD
-          </Typography>
-        </Box>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Profile" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Doc Collections" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Learning" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Settings" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Support" />
-          </ListItem>
-        </List>
-      </Drawer>
+    <DashboardSidebar onSelect={handleSidebarSelection} />
+    
+    {/* Main Content */}
+    <Box
+    component="main"
+    sx={{
+      flexGrow: 1,
+      p: 3,
+      marginLeft: `${drawerWidth}px`,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    }}
+    >
 
-      {/* Main Content */}
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          marginLeft: `${drawerWidth}px`,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Welcome to Your Dashboard
-          </Typography>
-          <Typography variant="body1" color="textSecondary">
-            Placeholder content for the dashboard main area.
-          </Typography>
-        </Box>
-
-        {/* Simplified Footer */}
-        <SimpleFooter />
-      </Box>
+    <Box sx={{ flexGrow: 1 }}>{renderComponent()}</Box>
+    
+    {/* Simplified Footer */}
+    <SimpleFooter />
+    </Box>
     </Box>
   );
 };
