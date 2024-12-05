@@ -120,9 +120,10 @@ const Home = () => {
           <Typography variant="h4" gutterBottom>
             Ready to Land Your Dream Job?
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" >
             Join thousands of job seekers who’ve transformed their careers with TailorJD.
           </Typography>
+          <br></br>
           <Button
             variant="contained"
             color="secondary"

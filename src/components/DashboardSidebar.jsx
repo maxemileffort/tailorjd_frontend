@@ -20,8 +20,8 @@ const DashboardSidebar = ({ onSelect }) => {
                 [`& .MuiDrawer-paper`]: {
                     width: drawerWidth,
                     boxSizing: 'border-box',
-                    background: 'linear-gradient(180deg, #1E3A8A, #1D4ED8)', // Gradient background
-                    color: 'white', // White text color
+                    background: 'linear-gradient(180deg, #1E3A8A, #1D4ED8)', // Blue Gradient background
+                    color: 'white', 
                 },
             }}
         >
@@ -31,22 +31,22 @@ const DashboardSidebar = ({ onSelect }) => {
                 </Typography>
             </Box>
             <List>
-                <ListItem button onClick={() => onSelect('profile')}>
+                <ListItem onClick={() => onSelect('profile')}>
                     <ListItemText primary="Profile" />
                 </ListItem>
-                <ListItem button onClick={() => onSelect('docCollections')}>
+                <ListItem onClick={() => onSelect('docCollections')}>
                     <ListItemText primary="Doc Collections" />
                 </ListItem>
-                <ListItem button onClick={() => onSelect('workspace')}>
+                <ListItem onClick={() => onSelect('workspace')}>
                     <ListItemText primary="Workspace" />
                 </ListItem>
-                <ListItem button onClick={() => onSelect('learning')}>
+                <ListItem onClick={() => onSelect('learning')}>
                     <ListItemText primary="Learning" />
                 </ListItem>
-                <ListItem button onClick={() => onSelect('settings')}>
+                <ListItem onClick={() => onSelect('settings')}>
                     <ListItemText primary="Settings" />
                 </ListItem>
-                <ListItem button onClick={() => onSelect('support')}>
+                <ListItem onClick={() => onSelect('support')}>
                     <ListItemText primary="Support" />
                 </ListItem>
             </List>

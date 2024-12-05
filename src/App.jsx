@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import PasswordRequest from './pages/PasswordRequest';
 import PasswordReset from './pages/PasswordReset';
 import UserDashboard from './pages/UserDashboard';
+import Pricing from './pages/Pricing';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -41,11 +42,13 @@ const MainContent = () => {
           <Route path="/forgot-password" element={<PasswordRequest />} />
           <Route path="/reset/*" element={<PasswordReset />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/pricing" element={<Pricing />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Box>
       {/* Footer */}
-      {!shouldHideFooter && <Footer />}
+      <br></br>
+      {!shouldHideFooter &&  <Footer />}
     </Box>
   );
 };
