@@ -1,168 +1,140 @@
-// import React from 'react';
+// import React, { useState } from 'react';
 // import {
-//     Box,
-//     TextField,
-//     Button,
-//     Typography
+//   Box,
+//   Typography,
+//   Accordion,
+//   AccordionSummary,
+//   AccordionDetails,
+//   IconButton,
 // } from '@mui/material';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import AddIcon from '@mui/icons-material/Add';
+// import RemoveIcon from '@mui/icons-material/Remove';
+// import Rewriter from './Rewriter';
+// import Drafter from './Drafter';
 
 // const Workspace = () => {
-//     return (
-//         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  height: '100vh' }}>
-//             <Box sx={{ display: 'flex', width: '100%', maxWidth: '1200px', justifyContent: 'space-between', mb: 2 }}>
-//                 <Box sx={{ width: '48%' }}>
-//                     <Typography variant="h6" gutterBottom>Resume</Typography>
-//                     <Typography variant="body1" gutterBottom>Copy / Paste your resume here.</Typography>
-//                     <TextField
-//                         multiline
-//                         rows={10}
-//                         variant="outlined"
-//                         fullWidth
-//                     />
-//                 </Box>
-//                 <Box sx={{ width: '48%' }}>
-//                     <Typography variant="h6" gutterBottom>JD</Typography>
-//                     <Typography variant="body1" gutterBottom>Copy / Paste any job description here.</Typography>
-//                     <TextField
-//                         multiline
-//                         rows={10}
-//                         variant="outlined"
-//                         fullWidth
-//                     />
-//                 </Box>
-//             </Box>
-//             <Button variant="contained" size="large" sx={{ width: '400px' }}>
-//                 Begin Rewrite
-//             </Button>
-//             <br></br>
-//             <Typography variant="p" gutterBottom>The "process" aligns your resume with this JD. It takes a minute or 2, so go put on some coffee.</Typography>
-//         </Box>
-//     );
+//   const [rewriterExpanded, setRewriterExpanded] = useState(false);
+//   const [drafterExpanded, setDrafterExpanded] = useState(false);
+
+//   const toggleRewriter = () => setRewriterExpanded((prev) => !prev);
+//   const toggleDrafter = () => setDrafterExpanded((prev) => !prev);
+
+//   return (
+//     <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', p: 2 }}>
+//       <Accordion expanded={rewriterExpanded} onChange={toggleRewriter}>
+//         <AccordionSummary
+//           sx={{
+//             display: 'flex',
+//             justifyContent: 'space-between',
+//             alignItems: 'center',
+//           }}
+//         >
+//           <Typography variant="h6">Rewriter</Typography>
+//           <IconButton onClick={toggleRewriter}>
+//             {rewriterExpanded ? <RemoveIcon /> : <AddIcon />}
+//           </IconButton>
+//         </AccordionSummary>
+//         <AccordionDetails>
+//           <Rewriter />
+//         </AccordionDetails>
+//       </Accordion>
+
+//       <Accordion expanded={drafterExpanded} onChange={toggleDrafter}>
+//         <AccordionSummary
+//           sx={{
+//             display: 'flex',
+//             justifyContent: 'space-between',
+//             alignItems: 'center',
+//           }}
+//         >
+//           <Typography variant="h6">Drafter</Typography>
+//           <IconButton onClick={toggleDrafter}>
+//             {drafterExpanded ? <RemoveIcon /> : <AddIcon />}
+//           </IconButton>
+//         </AccordionSummary>
+//         <AccordionDetails>
+//           <Drafter />
+//         </AccordionDetails>
+//       </Accordion>
+//     </Box>
+//   );
 // };
 
 // export default Workspace;
 
+
 import React, { useState } from 'react';
 import {
   Box,
-  TextField,
-  Button,
   Typography,
-  Alert,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  IconButton,
 } from '@mui/material';
-import axiosInstance from '../api/axiosInstance'; // Adjust the path accordingly
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import Rewriter from './Rewriter';
+import Drafter from './Drafter';
 
 const Workspace = () => {
-  const [userResume, setUserResume] = useState('');
-  const [jobDescription, setJobDescription] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [rewriterExpanded, setRewriterExpanded] = useState(false);
+  const [drafterExpanded, setDrafterExpanded] = useState(false);
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const token = localStorage.getItem('jwtToken');
-
-      if (!token) {
-        // User is not authenticated
-        window.location.href = '/login';
-        return;
-      }
-
-      // Set the Authorization header
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-      const response = await axiosInstance.post('/rewrites', {
-        user_resume: userResume,
-        jd: jobDescription,
-      });
-
-      // Handle the response
-      console.log('Response:', response.data);
-
-      // Redirect to results page
-    //   window.location.href = `/results/${response.data.collectionId}`;
-    } catch (err) {
-      console.error('Error submitting data:', err);
-      setError('An error occurred while processing your request.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const toggleRewriter = () => setRewriterExpanded((prev) => !prev);
+  const toggleDrafter = () => setDrafterExpanded((prev) => !prev);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: '100vh',
-        p: 2,
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          maxWidth: '1200px',
-          justifyContent: 'space-between',
-          mb: 2,
-          flexWrap: 'wrap',
-        }}
-      >
-        <Box sx={{ width: { xs: '100%', md: '48%' }, mb: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            Resume
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Copy / Paste your resume here.
-          </Typography>
-          <TextField
-            multiline
-            rows={10}
-            variant="outlined"
-            fullWidth
-            value={userResume}
-            onChange={(e) => setUserResume(e.target.value)}
-          />
-        </Box>
-        <Box sx={{ width: { xs: '100%', md: '48%' }, mb: 2 }}>
-          <Typography variant="h6" gutterBottom>
-            Job Description
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Copy / Paste any job description here.
-          </Typography>
-          <TextField
-            multiline
-            rows={10}
-            variant="outlined"
-            fullWidth
-            value={jobDescription}
-            onChange={(e) => setJobDescription(e.target.value)}
-          />
-        </Box>
-      </Box>
-      {error && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      )}
-      <Button
-        variant="contained"
-        size="large"
-        sx={{ width: '400px' }}
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? 'Processing...' : 'Begin Rewrite'}
-      </Button>
-      <br />
-      <Typography variant="body1" gutterBottom>
-        The process aligns your resume with this job description. It may take a minute or two, so grab a coffee!
-      </Typography>
+    <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', p: 2 }}>
+      <Accordion expanded={rewriterExpanded} onChange={toggleRewriter}>
+        <AccordionSummary
+          onClick={toggleRewriter} // Allow clicking the entire summary area
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h6">Rewriter</Typography>
+          <IconButton
+            onClick={(e) => {
+              // e.stopPropagation(); // Prevent event bubbling to AccordionSummary
+              toggleRewriter();
+            }}
+          >
+            {rewriterExpanded ? <RemoveIcon /> : <AddIcon />}
+          </IconButton>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Rewriter />
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion expanded={drafterExpanded} onChange={toggleDrafter}>
+        <AccordionSummary
+          onClick={toggleDrafter} // Allow clicking the entire summary area
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant="h6">Drafter</Typography>
+          <IconButton
+            onClick={(e) => {
+              // e.stopPropagation(); // Prevent event bubbling to AccordionSummary
+              toggleDrafter();
+            }}
+          >
+            {drafterExpanded ? <RemoveIcon /> : <AddIcon />}
+          </IconButton>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Drafter />
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 };

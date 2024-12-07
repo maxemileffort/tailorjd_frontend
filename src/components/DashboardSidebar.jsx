@@ -31,22 +31,47 @@ const DashboardSidebar = ({ onSelect }) => {
                 </Typography>
             </Box>
             <List>
-                <ListItem onClick={() => onSelect('profile')}>
+                <ListItem onClick={() => onSelect('home')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-home"
+                >
+                    <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem 
+                    onClick={() => onSelect('profile')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-profile"
+                >
                     <ListItemText primary="Profile" />
                 </ListItem>
-                <ListItem onClick={() => onSelect('docCollections')}>
+                <ListItem onClick={() => onSelect('docCollections')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-docCollections"
+                >
                     <ListItemText primary="Doc Collections" />
                 </ListItem>
-                <ListItem onClick={() => onSelect('workspace')}>
+                <ListItem onClick={() => onSelect('workspace')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-workspace"
+                >
                     <ListItemText primary="Workspace" />
                 </ListItem>
-                <ListItem onClick={() => onSelect('learning')}>
+                <ListItem onClick={() => onSelect('learning')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-learning"
+                >
                     <ListItemText primary="Learning" />
                 </ListItem>
-                <ListItem onClick={() => onSelect('settings')}>
+                <ListItem onClick={() => onSelect('settings')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-settings"
+                >
                     <ListItemText primary="Settings" />
                 </ListItem>
-                <ListItem onClick={() => onSelect('support')}>
+                <ListItem onClick={() => onSelect('support')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-support"
+                >
                     <ListItemText primary="Support" />
                 </ListItem>
             </List>

@@ -25,6 +25,7 @@ const NotificationBar = ({ creditBalance, onBuyCredits, adminMessage }) => {
 
       {/* Buy Credits Button */}
       <Button
+        className="notification-bar-buy-credits"
         component={Link}
         to='/pricing'
         variant="contained"

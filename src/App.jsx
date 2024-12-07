@@ -9,6 +9,8 @@ import PasswordRequest from './pages/PasswordRequest';
 import PasswordReset from './pages/PasswordReset';
 import UserDashboard from './pages/UserDashboard';
 import Pricing from './pages/Pricing';
+import Success from './pages/Success';
+import Contact from './pages/Contact';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -41,6 +43,8 @@ const MainContent = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<PasswordRequest />} />
           <Route path="/reset/*" element={<PasswordReset />} />
+          <Route path="/success*" element={<Success />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/pricing" element={<Pricing />} />
           {/* <Route path="*" element={<NotFound />} /> */}

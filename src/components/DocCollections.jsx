@@ -1,22 +1,3 @@
-// import React from 'react';
-// import { Box, Typography, List, ListItem } from '@mui/material';
-
-// const DocCollections = () => {
-//     return (
-//         <Box sx={{ padding: 2 }}>
-//             <Typography variant="h4">Document Collections</Typography>
-//             <List>
-//                 <ListItem>Document 1</ListItem>
-//                 <ListItem>Document 2</ListItem>
-//                 <ListItem>Document 3</ListItem>
-//             </List>
-//         </Box>
-//     );
-// };
-
-// export default DocCollections;
-
-
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -25,7 +6,10 @@ import {
   Button,
   CircularProgress,
   Alert,
+  Switch,
+  FormControlLabel,
 } from '@mui/material';
+import ReactMarkdown from 'react-markdown';
 import axiosInstance from '../api/axiosInstance'; // Adjust the path accordingly
 
 const DocCollections = () => {
@@ -33,6 +17,8 @@ const DocCollections = () => {
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [prettyPrint, setPrettyPrint] = useState(false);
+  const [sortAscending, setSortAscending] = useState(true);
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -56,31 +42,115 @@ const DocCollections = () => {
     fetchCollections();
   }, []);
 
+  const handleTogglePrettyPrint = () => setPrettyPrint((prev) => !prev);
+
+  const handleToggleSortOrder = () => {
+    setSortAscending((prev) => !prev);
+    setCollections((prevCollections) =>
+      [...prevCollections].sort((a, b) =>
+        sortAscending
+          ? new Date(b.createdAt) - new Date(a.createdAt) // Sort descending
+          : new Date(a.createdAt) - new Date(b.createdAt) // Sort ascending
+      )
+    );
+  };
+
   return (
     <Box sx={{ padding: 2 }}>
       {selectedDoc ? (
         // Render the selected document
         <Box>
-          <Button
-            variant="contained"
-            onClick={() => setSelectedDoc(null)}
-            sx={{ position: 'sticky', top: 0, mb: 2 }}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              position: 'sticky',
+              top: 0,
+              backgroundColor: 'white',
+              zIndex: 1,
+              paddingBottom: 1,
+            }}
           >
-            Back
-          </Button>
-          <Typography variant="h4" gutterBottom>
-            {selectedDoc.docType.replace('_', ' ')}
-          </Typography>
-          <Typography variant="body1" component="pre">
-            {selectedDoc.content}
-          </Typography>
+            <Button
+              variant="contained"
+              onClick={() => setSelectedDoc(null)}
+            >
+              Back
+            </Button>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={prettyPrint}
+                  onChange={handleTogglePrettyPrint}
+                  color="primary"
+                />
+              }
+              label="Pretty Print"
+            />
+          </Box>
+          <Box
+            sx={{
+              maxWidth: '100%',
+              margin: '0 auto',
+              padding: 2,
+              overflowX: 'hidden',
+              wordWrap: 'break-word',
+            }}
+          >
+            <Typography variant="h4" gutterBottom>
+              {selectedDoc.docType.replace('_', ' ')}
+            </Typography>
+            {prettyPrint ? (
+              <Box
+                sx={{
+                  padding: 2,
+                  border: '1px solid #ccc',
+                  borderRadius: '8px',
+                  backgroundColor: '#f9f9f9',
+                }}
+              >
+                <ReactMarkdown>{selectedDoc.content}</ReactMarkdown>
+              </Box>
+            ) : (
+              <Typography
+                variant="body1"
+                component="pre"
+                sx={{
+                  whiteSpace: 'pre-wrap',
+                  wordWrap: 'break-word',
+                }}
+              >
+                {selectedDoc.content}
+              </Typography>
+            )}
+          </Box>
         </Box>
       ) : (
         // Render the list of collections
         <Box>
-          <Typography variant="h4" gutterBottom>
-            Document Collections
-          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mb: 2,
+            }}
+          >
+            <Typography variant="h4" gutterBottom>
+              Document Collections
+            </Typography>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={!sortAscending}
+                  onChange={handleToggleSortOrder}
+                  color="primary"
+                />
+              }
+              label="Sort Most Recent First"
+            />
+          </Box>
           {loading ? (
             <CircularProgress />
           ) : error ? (
@@ -89,7 +159,10 @@ const DocCollections = () => {
             collections.map((collection) => (
               <Box key={collection.id} sx={{ mb: 4 }}>
                 <Typography variant="h5" gutterBottom>
-                  Collection {collection.id}
+                  Collection - {collection.collectionName}
+                </Typography>
+                <Typography variant="subtitle2" gutterBottom>
+                  Created At: {new Date(collection.createdAt).toLocaleString()}
                 </Typography>
                 <Grid container spacing={2}>
                   {collection.docs.map((doc) => (

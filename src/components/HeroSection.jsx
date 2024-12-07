@@ -22,18 +22,10 @@ const HeroSection = () => {
       <Typography variant="h3" gutterBottom>
         Find the Right Plan for You
       </Typography>
-      <Typography variant="h6" color="inherit" paragraph>
-        Flexible pricing plans and credits to match your job hunt needs. Start with a subscription or pay as you go!
+      <Typography variant="h5" color="inherit">
+        Flexible enough to match your job hunt needs. Save with a subscription or pay as you go!
       </Typography>
-      <Button
-        variant="contained"
-        color="secondary"
-        size="large"
-        sx={{ mt: 3 }}
-        onClick={() => navigate('/signup')}
-      >
-        Get Started Today
-      </Button>
+      
     </Box>
   );
 };
