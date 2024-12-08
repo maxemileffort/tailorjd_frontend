@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   CssBaseline,
@@ -13,6 +14,7 @@ import useDynamicComponentRenderer from '../hooks/useDynamicComponentRenderer';
 const drawerWidth = 60;
 
 const UserDashboard = ({ role }) => {
+  const navigate = useNavigate();
   const { selectedComponent, setSelectedComponent, renderComponent } =
     useDynamicComponentRenderer();
   const [creditBalance, setCreditBalance] = useState(0);
@@ -28,7 +30,9 @@ const UserDashboard = ({ role }) => {
     try {
       const jwtToken = localStorage.getItem('jwtToken');
       if (!jwtToken) {
-        console.error('No JWT token found');
+        console.error('Not authenticated.');
+        // Redirect to login
+        navigate('/login');
         return;
       }
 

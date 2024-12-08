@@ -14,6 +14,7 @@ const Rewriter = () => {
   const [jobDescription, setJobDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [errorInfo, setErrorInfo] = useState(null);
   const [isFetchingResume, setIsFetchingResume] = useState(true);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const Rewriter = () => {
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
+    setErrorInfo(null);
 
     try {
       const response = await axiosInstance.post('/rewrites', {
@@ -58,6 +60,7 @@ const Rewriter = () => {
     } catch (err) {
       console.error('Error submitting data:', err);
       setError('An error occurred while processing your request.');
+      setErrorInfo(err.response.data.error);
     } finally {
       setLoading(false);
     }
@@ -134,6 +137,11 @@ const Rewriter = () => {
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}
+        </Alert>
+      )}
+      {errorInfo && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {errorInfo}
         </Alert>
       )}
       <Button

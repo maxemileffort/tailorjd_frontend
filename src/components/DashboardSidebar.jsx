@@ -17,6 +17,14 @@ const DashboardSidebar = ({ onSelect, role }) => {
     const isAdmin = ['admin'].includes(role);
     const isWriter = ['admin', 'writer'].includes(role);
 
+    const handleLogout = () => {
+        // Remove token from localStorage
+        localStorage.removeItem('jwtToken');
+
+        // Redirect to login
+        navigate('/login');
+    }
+
     return (
         <Drawer
             variant="permanent"
@@ -92,6 +100,13 @@ const DashboardSidebar = ({ onSelect, role }) => {
                 >
                     <ListItemText primary="Writers" />
                 </ListItem>}
+                <ListItem
+                    onClick={() => handleLogout(navigate)}
+                    sx={{ cursor: 'pointer' }}
+                    className="sidebar-item-logout"
+                >
+                    <ListItemText primary="Logout" />
+                </ListItem>
             </List>
         </Drawer>
     );

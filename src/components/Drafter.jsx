@@ -14,10 +14,12 @@ const Drafter = () => {
   const [jd3, setJd3] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [errorInfo, setErrorInfo] = useState(null);
 
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
+    setErrorInfo(null);
 
     try {
       const token = localStorage.getItem('jwtToken');
@@ -42,6 +44,7 @@ const Drafter = () => {
     } catch (err) {
       console.error('Error submitting data:', err);
       setError('An error occurred while processing your request.');
+      setErrorInfo(err.response.data.error);
     } finally {
       setLoading(false);
     }
@@ -97,6 +100,11 @@ const Drafter = () => {
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}
+        </Alert>
+      )}
+      {errorInfo && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {errorInfo}
         </Alert>
       )}
       <Button

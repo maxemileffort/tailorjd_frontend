@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -18,6 +18,14 @@ const LoginForm = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+        // Redirect to dashboard if already logged in
+        navigate('/userdashboard');
+    }
+}, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
