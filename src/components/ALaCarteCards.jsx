@@ -9,10 +9,33 @@ import {
     Card,
     CardContent,
     CardActions,
-  } from '@mui/material';
+} from '@mui/material';
+import { loadStripe } from '@stripe/stripe-js';
+
+const pk = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+const stripePromise = loadStripe(pk);
 
 const ALaCarteCards = () => {
     const navigate = useNavigate();
+
+    const handleCheckout = async (planId) => {
+      try {
+        const stripe = await stripePromise;
+        const apiUrl = import.meta.env.VITE_API_BASE_URL;
+        const response = await fetch(`${apiUrl}/api/checkouts/create-checkout-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ planId }),
+        });
+  
+        const { id: sessionId } = await response.json();
+  
+        await stripe.redirectToCheckout({ sessionId });
+      } catch (error) {
+        console.error('Error redirecting to checkout:', error);
+        alert('Something went wrong. Please try again.');
+      }
+    };
 
     return (
         <Box py={6}>
@@ -39,7 +62,7 @@ const ALaCarteCards = () => {
                     variant="contained"
                     color="secondary"
                     fullWidth
-                    onClick={() => navigate('/checkout?credits=10')}
+                    onClick={() => handleCheckout('alacarte10')}
                   >
                     Buy Now
                   </Button>
@@ -66,7 +89,7 @@ const ALaCarteCards = () => {
                     variant="contained"
                     color="primary"
                     fullWidth
-                    onClick={() => navigate('/checkout?credits=50')}
+                    onClick={() => handleCheckout('alacarte50')}
                   >
                     Buy Now
                   </Button>

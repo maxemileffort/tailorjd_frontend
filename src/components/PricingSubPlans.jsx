@@ -134,7 +134,7 @@ const PricingSubPlans = () => {
                   variant="contained"
                   color="secondary"
                   fullWidth
-                  onClick={() => navigate('/signup')}
+                  onClick={() => handleCheckout('silver')}
                 >
                   Get Silver
                 </Button>
@@ -188,7 +188,7 @@ const PricingSubPlans = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
-                  onClick={() => navigate('/signup')}
+                  onClick={() => handleCheckout('gold')}
                 >
                   Get Gold
                 </Button>

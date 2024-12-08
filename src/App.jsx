@@ -49,7 +49,8 @@ const MainContent = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<PasswordRequest />} />
           <Route path="/reset/*" element={<PasswordReset />} />
-          <Route path="/success/*" element={<Success />} />
+          {/* <Route path="/success?session_id=*" element={<Success />} /> */}
+          <Route path="/success" element={<Success />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/userdashboard" element={<UserDashboard role={role}/>} />
           <Route path="/pricing" element={<Pricing />} />
