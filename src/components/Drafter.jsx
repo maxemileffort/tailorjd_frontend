@@ -61,9 +61,6 @@ const Drafter = () => {
             No resume? No problem! This module lets you use 3 job descriptions to craft a rez template for beginning the journey to new employment.
             <br></br>
             <br></br>
-            <strong>Note:</strong> This module takes 2 credits.
-            <br></br>
-            <br></br>
         </Typography>
       <Box
         sx={{

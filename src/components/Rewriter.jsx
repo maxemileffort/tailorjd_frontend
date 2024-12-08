@@ -1,45 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   TextField,
   Button,
   Typography,
   Alert,
+  CircularProgress,
 } from '@mui/material';
-import axiosInstance from '../api/axiosInstance'; // Adjust the path accordingly
+import axiosInstance from '../api/axiosInstance'; 
 
 const Rewriter = () => {
   const [userResume, setUserResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isFetchingResume, setIsFetchingResume] = useState(true);
+
+  useEffect(() => {
+    const fetchCurrentResume = async () => {
+      try {
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+          window.location.href = '/login';
+          return;
+        }
+
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        const { data } = await axiosInstance.get('/users/demographics');
+
+        // Set currentResume to userResume if it exists
+        setUserResume(data.currentResume || '');
+      } catch (err) {
+        console.error('Error fetching current resume:', err);
+        setError('Failed to load your current resume.');
+      } finally {
+        setIsFetchingResume(false);
+      }
+    };
+
+    fetchCurrentResume();
+  }, []);
 
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const token = localStorage.getItem('jwtToken');
-
-      if (!token) {
-        // User is not authenticated
-        window.location.href = '/login';
-        return;
-      }
-
-      // Set the Authorization header
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
       const response = await axiosInstance.post('/rewrites', {
         user_resume: userResume,
         jd: jobDescription,
       });
 
-      // Handle the response
       console.log('Response:', response.data);
 
       // Redirect to results page
-    //   window.location.href = `/results/${response.data.collectionId}`;
+      // window.location.href = `/doccollections`;
     } catch (err) {
       console.error('Error submitting data:', err);
       setError('An error occurred while processing your request.');
@@ -47,6 +62,21 @@ const Rewriter = () => {
       setLoading(false);
     }
   };
+
+  if (isFetchingResume) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Box

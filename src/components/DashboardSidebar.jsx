@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Drawer,
@@ -10,7 +11,12 @@ import {
 
 const drawerWidth = 240;
 
-const DashboardSidebar = ({ onSelect }) => {
+const DashboardSidebar = ({ onSelect, role }) => {
+    const navigate = useNavigate();
+
+    const isAdmin = ['admin'].includes(role);
+    const isWriter = ['admin', 'writer'].includes(role);
+
     return (
         <Drawer
             variant="permanent"
@@ -74,6 +80,18 @@ const DashboardSidebar = ({ onSelect }) => {
                 >
                     <ListItemText primary="Support" />
                 </ListItem>
+                {isAdmin &&  <ListItem onClick={() => navigate('/admin')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-admin"
+                >
+                    <ListItemText primary="Admin" />
+                </ListItem>}
+                {isWriter &&  <ListItem onClick={() => navigate('/writer')}
+                    sx={{cursor: 'pointer'}}
+                    className="sidebar-item-writer"
+                >
+                    <ListItemText primary="Writers" />
+                </ListItem>}
             </List>
         </Drawer>
     );

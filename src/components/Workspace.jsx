@@ -24,6 +24,7 @@
 //     <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', p: 2 }}>
 //       <Accordion expanded={rewriterExpanded} onChange={toggleRewriter}>
 //         <AccordionSummary
+//           onClick={toggleRewriter} // Allow clicking the entire summary area
 //           sx={{
 //             display: 'flex',
 //             justifyContent: 'space-between',
@@ -31,7 +32,12 @@
 //           }}
 //         >
 //           <Typography variant="h6">Rewriter</Typography>
-//           <IconButton onClick={toggleRewriter}>
+//           <IconButton
+//             onClick={(e) => {
+//               e.stopPropagation(); // Prevent event bubbling to AccordionSummary
+//               toggleRewriter();
+//             }}
+//           >
 //             {rewriterExpanded ? <RemoveIcon /> : <AddIcon />}
 //           </IconButton>
 //         </AccordionSummary>
@@ -42,6 +48,7 @@
 
 //       <Accordion expanded={drafterExpanded} onChange={toggleDrafter}>
 //         <AccordionSummary
+//           onClick={toggleDrafter} // Allow clicking the entire summary area
 //           sx={{
 //             display: 'flex',
 //             justifyContent: 'space-between',
@@ -49,7 +56,12 @@
 //           }}
 //         >
 //           <Typography variant="h6">Drafter</Typography>
-//           <IconButton onClick={toggleDrafter}>
+//           <IconButton
+//             onClick={(e) => {
+//               e.stopPropagation(); // Prevent event bubbling to AccordionSummary
+//               toggleDrafter();
+//             }}
+//           >
 //             {drafterExpanded ? <RemoveIcon /> : <AddIcon />}
 //           </IconButton>
 //         </AccordionSummary>
@@ -73,7 +85,6 @@ import {
   AccordionDetails,
   IconButton,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Rewriter from './Rewriter';
@@ -89,21 +100,9 @@ const Workspace = () => {
   return (
     <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', p: 2 }}>
       <Accordion expanded={rewriterExpanded} onChange={toggleRewriter}>
-        <AccordionSummary
-          onClick={toggleRewriter} // Allow clicking the entire summary area
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
+        <AccordionSummary sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6">Rewriter</Typography>
-          <IconButton
-            onClick={(e) => {
-              // e.stopPropagation(); // Prevent event bubbling to AccordionSummary
-              toggleRewriter();
-            }}
-          >
+          <IconButton>
             {rewriterExpanded ? <RemoveIcon /> : <AddIcon />}
           </IconButton>
         </AccordionSummary>
@@ -113,21 +112,9 @@ const Workspace = () => {
       </Accordion>
 
       <Accordion expanded={drafterExpanded} onChange={toggleDrafter}>
-        <AccordionSummary
-          onClick={toggleDrafter} // Allow clicking the entire summary area
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
+        <AccordionSummary sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6">Drafter</Typography>
-          <IconButton
-            onClick={(e) => {
-              // e.stopPropagation(); // Prevent event bubbling to AccordionSummary
-              toggleDrafter();
-            }}
-          >
+          <IconButton>
             {drafterExpanded ? <RemoveIcon /> : <AddIcon />}
           </IconButton>
         </AccordionSummary>
