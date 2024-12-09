@@ -83,13 +83,13 @@ const Footer = () => {
             <Typography variant="h6" gutterBottom>
               Legal
             </Typography>
-            <Link href="/terms" color="inherit" underline="hover" display="block">
+            <Link href="/legal#terms" color="inherit" underline="hover" display="block">
               Terms of Service
             </Link>
-            <Link href="/privacy" color="inherit" underline="hover" display="block">
+            <Link href="/legal#privacy" color="inherit" underline="hover" display="block">
               Privacy Policy
             </Link>
-            <Link href="/cookie-policy" color="inherit" underline="hover" display="block">
+            <Link href="/legal#cookie-policy" color="inherit" underline="hover" display="block">
               Cookie Policy
             </Link>
           </Grid>

@@ -12,6 +12,7 @@ import Pricing from './pages/Pricing';
 import Success from './pages/Success';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
+import LegalPage from './pages/Legal';
 import FeaturesPage from './pages/FeaturesPage';
 import Writer from './pages/Writer';
 import Footer from './components/Footer';
@@ -48,6 +49,7 @@ const MainContent = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/legal" element={<LegalPage />} />
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/forgot-password" element={<PasswordRequest />} />
           <Route path="/reset/*" element={<PasswordReset />} />
