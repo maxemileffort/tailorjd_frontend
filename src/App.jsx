@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { CssBaseline, Box } from '@mui/material';
 import Home from './pages/Home';
@@ -18,6 +18,8 @@ import Writer from './pages/Writer';
 import Footer from './components/Footer';
 import ProtectedRoute from './routes/ProtectedRoute';
 
+import axiosInstance from './api/axiosInstance'; 
+
 const App = () => {
   return (
     <Router>
@@ -30,9 +32,43 @@ const App = () => {
 const MainContent = () => {
   const location = useLocation();
   const shouldHideFooter = location.pathname.includes('dashboard');
-  
-  const isAuthenticated = false; // Replace with actual authentication logic
-  const role = 'USER'; // Replace with actual role logic (e.g., 'admin' or 'writer')
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [role, setRole] = useState('USER');
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('jwtToken');
+
+      if (!token) {
+        setIsAuthenticated(false);
+        return;
+      }
+
+      try {
+        // Set the Authorization header
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        // Call the token-check endpoint
+        const response = await axiosInstance.post('/auth/token-check');
+        const newToken = response.data.token;
+
+        // Update the token if it was refreshed
+        if (newToken && newToken !== token) {
+          localStorage.setItem('jwtToken', newToken);
+          axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+        }
+
+        setIsAuthenticated(true);
+      } catch (error) {
+        // Token is invalid or expired
+        localStorage.removeItem('jwtToken');
+        setIsAuthenticated(false);
+      } 
+    };
+
+    checkAuth();
+  }, []);
   
   return (
     <Box

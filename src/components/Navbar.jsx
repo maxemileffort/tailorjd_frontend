@@ -44,14 +44,14 @@ const Navbar = () => {
 
         // Update the token if it was refreshed
         if (newToken && newToken !== token) {
-          localStorage.setItem('token', newToken);
+          localStorage.setItem('jwtToken', newToken);
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
         }
 
         setIsAuthenticated(true);
       } catch (error) {
         // Token is invalid or expired
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwtToken');
         setIsAuthenticated(false);
       } finally {
         setLoading(false);
