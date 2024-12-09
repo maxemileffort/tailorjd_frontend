@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import CallToAction from '../components/CTAFreeCredits' 
 import {
   Container,
   Box,
@@ -41,7 +42,7 @@ const Home = () => {
         </Box>
 
         {/* Features Section */}
-<Box py={6}>
+<Box id="features" py={6}>
   <Typography variant="h4" gutterBottom>
     Why Choose TailorJD?
   </Typography>
@@ -108,7 +109,7 @@ const Home = () => {
 
 
         {/* Call to Action Section */}
-        <Box
+        {/* <Box
           py={6}
           bgcolor="primary.main"
           color="white"
@@ -132,7 +133,9 @@ const Home = () => {
           >
             Sign Up Now
           </Button>
-        </Box>
+        </Box> */}
+
+      <CallToAction />
       </Container>
     </>
   );
