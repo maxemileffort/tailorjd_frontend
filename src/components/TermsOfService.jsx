@@ -3,8 +3,8 @@ import { Container, Typography, Box, List, ListItem, ListItemText } from "@mui/m
 
 const termsData = {
     termsOfService: {
-        "effectiveDate": "[Insert Date]",
-      "lastUpdated": "[Insert Date]",
+        "effectiveDate": "2024-12-09",
+      "lastUpdated": "2024-12-09",
       "introduction": "Welcome to TailorJD! These Terms of Service (\"Terms\") govern your use of our website, services, and products provided by TailorJD (\"we,\" \"us,\" or \"our\"). By accessing or using TailorJD, you agree to be bound by these Terms. If you do not agree to these Terms, please do not use our services.",
       "sections": [
         {
@@ -94,7 +94,7 @@ const termsData = {
           "title": "Contact Us",
           "content": "For any questions or concerns about these Terms, please contact us at:",
           "items": [
-            "Email: [Insert Email Address]",
+            "Email: legal@tailorjd.com",
             "Address: [Insert Address]"
           ]
         }

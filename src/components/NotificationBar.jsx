@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 
-const NotificationBar = ({ creditBalance, onBuyCredits, adminMessage }) => {
+const NotificationBar = ({ creditBalance, adminMessage }) => {
   return (
     <Box
       sx={{

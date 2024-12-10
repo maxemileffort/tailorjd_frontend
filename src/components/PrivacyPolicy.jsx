@@ -67,7 +67,7 @@ const privacyPolicyData = {
         content: "If you have any questions or concerns about this Privacy Policy, please contact us at:",
         items: [
           "Email: [Insert Email Address]",
-          "Address: [Insert Address]"
+          "Address: Remote"
         ]
       }
     ]

@@ -16,8 +16,10 @@ const SignUpForm = () => {
     email: '',
     password: '',
   });
+
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +43,7 @@ const SignUpForm = () => {
   
     setError('');
     setSuccess(false);
+    setLoading(true);
   
     // Prepare payload
     const payload = {
@@ -65,7 +68,7 @@ const SignUpForm = () => {
       }
   
       setSuccess(true);
-      console.log('User created successfully');
+      // console.log('User created successfully');
       
     // Get the token from the response (assuming it's returned in JSON format)
     const data = await response.json();
@@ -78,7 +81,9 @@ const SignUpForm = () => {
     navigate('/userdashboard');
     } catch (error) {
       setError(error.message || 'An error occurred while creating the user.');
-      console.error(error);
+      // console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -106,9 +111,7 @@ const SignUpForm = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-          <Box sx={{ mb: 3 }}>
-          </Box>
-          <Box sx={{ mb: 3 }}>
+          <Box sx={{ mb: 3, mt : 3 }}>
             <TextField
               fullWidth
               label="Email"

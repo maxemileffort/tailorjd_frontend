@@ -11,7 +11,6 @@ import DashboardSidebar from '../components/DashboardSidebar';
 import NotificationBar from '../components/NotificationBar';
 import useDynamicComponentRenderer from '../hooks/useDynamicComponentRenderer';
 
-const drawerWidth = 60;
 
 const UserDashboard = ({ role }) => {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const UserDashboard = ({ role }) => {
     useDynamicComponentRenderer();
   const [creditBalance, setCreditBalance] = useState(0);
   const [adminMessage, setAdminMessage] = useState(
-    'Welcome! Enjoy our latest promo: 20% off credits.'
+    "Welcome! If you're new, try the tour!"
   );
 
   const homeSelected = selectedComponent === 'home';
@@ -145,7 +144,6 @@ const UserDashboard = ({ role }) => {
         <NotificationBar
           creditBalance={creditBalance}
           adminMessage={adminMessage}
-          onBuyCredits={() => alert('Redirecting to buy credits...')}
         />
 
             {homeSelected && <Button
