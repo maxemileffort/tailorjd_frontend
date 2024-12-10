@@ -78,7 +78,9 @@ const SignUpForm = () => {
     localStorage.setItem('jwtToken', token);
     
     // Redirect to the dashboard
-    navigate('/userdashboard');
+    // navigate('/userdashboard');
+    // Redirect to the sign up success page to give sign up time to propagate
+    navigate('/signupsuccess');
     } catch (error) {
       setError(error.message || 'An error occurred while creating the user.');
       // console.error(error);

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import Navbar from '../components/Navbar';
 
-const Success = () => {
+const CheckoutSuccess = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [sessionDetails, setSessionDetails] = useState(null);
@@ -106,4 +106,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default CheckoutSuccess;

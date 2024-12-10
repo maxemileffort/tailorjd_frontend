@@ -9,7 +9,8 @@ import PasswordRequest from './pages/PasswordRequest';
 import PasswordReset from './pages/PasswordReset';
 import UserDashboard from './pages/UserDashboard';
 import Pricing from './pages/Pricing';
-import Success from './pages/Success';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import SignUpSuccess from './pages/SignUpSuccess';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import LegalPage from './pages/Legal';
@@ -90,7 +91,8 @@ const MainContent = () => {
     <Route path="/forgot-password" element={<PasswordRequest />} />
     
     {/* <Route path="/success?session_id=*" element={<Success />} /> */}
-    <Route path="/success" element={<Success />} />
+    <Route path="/success" element={<CheckoutSuccess />} />
+    <Route path="/signupsuccess" element={<SignUpSuccess />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/userdashboard" element={<UserDashboard role={role}/>} />
     <Route path="/pricing" element={<Pricing />} />
