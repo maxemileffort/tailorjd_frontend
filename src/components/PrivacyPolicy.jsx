@@ -3,8 +3,8 @@ import { Container, Typography, Box, List, ListItem, ListItemText } from "@mui/m
 
 const privacyPolicyData = {
   privacyPolicy: {
-    effectiveDate: "[Insert Date]",
-    lastUpdated: "[Insert Date]",
+    effectiveDate: "2024-12-09",
+    lastUpdated: "2024-12-09",
     introduction:
       "At TailorJD, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our services.",
     sections: [
@@ -66,8 +66,8 @@ const privacyPolicyData = {
         title: "Contact Us",
         content: "If you have any questions or concerns about this Privacy Policy, please contact us at:",
         items: [
-          "Email: [Insert Email Address]",
-          "Address: Remote"
+          "Email: legal@tailorjd.com",
+          "Address: TBD"
         ]
       }
     ]

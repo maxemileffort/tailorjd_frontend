@@ -72,8 +72,8 @@ const DashboardHome = () => {
                 </Typography>
                 <Typography variant="body1" color="textSecondary" component="ul" pl={2}>
                     <li>Google Drive Integration - Pick resumes from GDrive and also save directly to Gdrive.</li>
-                    <li>Saving Resumes to your profile.</li>
-                    <li>Resume Drafting - Done! Check it out in Workspaces.</li>
+                    <li><s>Saving Resumes to your profile.</s> Just copy and paste them in now.</li>
+                    <li><s>Resume Drafting - Done! Check it out in Workspaces.</s></li>
                     <li>Browser Extension - For saving JDs faster.</li>
                     <li>Job Hunt Tracking - For tracking status of apps and rezs sent.</li>
                     <li>Resume Templates - To make them look nice.</li>

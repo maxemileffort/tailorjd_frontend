@@ -90,7 +90,6 @@ const MainContent = () => {
     <Route path="/features" element={<FeaturesPage />} />
     <Route path="/forgot-password" element={<PasswordRequest />} />
     
-    {/* <Route path="/success?session_id=*" element={<Success />} /> */}
     <Route path="/success" element={<CheckoutSuccess />} />
     <Route path="/signupsuccess" element={<SignUpSuccess />} />
     <Route path="/contact" element={<Contact />} />

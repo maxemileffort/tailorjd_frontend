@@ -23,7 +23,10 @@ const SignUpSuccess = () => {
           Please check your email inbox for a confirmation email.
         </Typography>
         <Typography variant="body2" gutterBottom>
-          Follow the link in the email to set your password and log in for the first time.
+          You can whitelist that email to make sure you get important updates about your resumes.
+        </Typography>
+        <Typography variant="body2" gutterBottom>
+          Just respond with a "Yes" (or a "No" if you are feelin' froggy), and you're good to go!
         </Typography>
         <Typography variant="body2" gutterBottom>
           If you don’t see the email, please also check your spam or junk folders.

@@ -3,8 +3,8 @@ import { Container, Typography, Box, List, ListItem, ListItemText } from "@mui/m
 
 const cookiePolicyData = {
     cookiePolicy: {
-      effectiveDate: "[Insert Date]",
-      lastUpdated: "[Insert Date]",
+      effectiveDate: "2024-12-09",
+      lastUpdated: "2024-12-09",
       introduction:
         "At TailorJD, we use cookies and similar tracking technologies to enhance your experience on our platform. This Cookie Policy explains what cookies are, how we use them, and your choices regarding their use.",
       sections: [
@@ -46,8 +46,8 @@ const cookiePolicyData = {
           title: "Contact Us",
           content: "If you have any questions or concerns about this Cookie Policy, please contact us at:",
           items: [
-            "Email: [Insert Email Address]",
-            "Address: [Insert Address]"
+            "Email: legal@tailorjd.com",
+            "Address: TBD"
           ]
         }
       ]

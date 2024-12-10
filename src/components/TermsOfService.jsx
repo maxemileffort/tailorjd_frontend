@@ -76,7 +76,7 @@ const termsData = {
         },
         {
           "title": "Privacy Policy",
-          "content": "Your use of TailorJD is also governed by our [Privacy Policy](#), which explains how we collect, use, and protect your data."
+          "content": "Your use of TailorJD is also governed by our Privacy Policy (on this page), which explains how we collect, use, and protect your data."
         },
         {
           "title": "Termination",
@@ -84,7 +84,7 @@ const termsData = {
         },
         {
           "title": "Governing Law",
-          "content": "These Terms are governed by the laws of [Your Jurisdiction]. Any disputes will be resolved exclusively in the courts of [Your Jurisdiction]."
+          "content": "These Terms are governed by the laws of Tulsa, OK, USA. Any disputes will be resolved exclusively in the courts of Tulsa, OK, USA."
         },
         {
           "title": "Changes to Terms",
@@ -95,7 +95,7 @@ const termsData = {
           "content": "For any questions or concerns about these Terms, please contact us at:",
           "items": [
             "Email: legal@tailorjd.com",
-            "Address: [Insert Address]"
+            "Address: TBD"
           ]
         }
       ]
