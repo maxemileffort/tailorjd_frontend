@@ -1,7 +1,7 @@
 // context/UserContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const UserContext = createContext();
 
