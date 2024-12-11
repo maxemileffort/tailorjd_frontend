@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import Navbar from '../components/Navbar';
 
@@ -10,8 +10,10 @@ const CheckoutSuccess = () => {
   const [loading, setLoading] = useState(true);
   
   // Extract session_id from the URL
-  const queryParams = new URLSearchParams(location.search);
-  const sessionId = queryParams.get('session_id');
+  // const queryParams = new URLSearchParams(location.search);
+  // const sessionId = queryParams.get('session_id');
+
+  const { sessionId } = useParams()
   
   // Fetch Stripe session details (optional)
   useEffect(() => {

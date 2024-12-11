@@ -200,7 +200,7 @@ const MainContent = () => {
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/features" element={<FeaturesPage />} />
         <Route path="/forgot-password" element={<PasswordRequest />} />
-        <Route path="/success" element={<CheckoutSuccess />} />
+        <Route path="/success?session_id=:sessionId" element={<CheckoutSuccess />} />
         <Route path="/signupsuccess" element={<SignUpSuccess />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/userdashboard" element={<UserDashboard role={role} />} />
