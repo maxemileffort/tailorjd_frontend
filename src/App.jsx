@@ -16,6 +16,7 @@ import Admin from './pages/Admin';
 import LegalPage from './pages/Legal';
 import FeaturesPage from './pages/FeaturesPage';
 import Writer from './pages/Writer';
+import NotFound from './pages/Error404'
 import Footer from './components/Footer';
 import ProtectedRoute from './routes/ProtectedRoute';
 
@@ -127,7 +128,7 @@ const MainContent = () => {
     
     <Route path="/reset/*" element={<PasswordReset />} />
     
-    {/* <Route path="*" element={<NotFound />} /> */}
+    <Route path="*" element={<NotFound />} />
     </Routes>
     </Box>
     {/* Footer */}

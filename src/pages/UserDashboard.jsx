@@ -64,7 +64,7 @@ const UserDashboard = ({ role }) => {
   
   useEffect(() => {
     fetchCreditBalance();
-  }, []);
+  }, [selectedComponent, isOpen]);
   
   const handleTourStart = () => {
     setIsOpen(true)
