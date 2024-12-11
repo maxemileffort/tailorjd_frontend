@@ -1,13 +1,15 @@
 // context/UserContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import axiosInstance from '../api/axiosInstance';
-import { jwtDecode } from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
+import { parseJwt } from '../utils/jwtParser';
+
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [role, setRole] = useState('USER');
+    const [role, setRole] = useState(null);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -15,6 +17,7 @@ const UserProvider = ({ children }) => {
 
             if (!token) {
                 setIsAuthenticated(false);
+                setRole(null);
                 return;
             }
 
@@ -28,23 +31,24 @@ const UserProvider = ({ children }) => {
 
                 // Update the token if it was refreshed
                 if (newToken && newToken !== token) {
-                    localStorage.setItem('jwtToken', newToken);
-                    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+                    const decodedToken = parseJwt(newToken);
+                    console.log(`decodedToken: ${decodedToken}`);
+                    setRole(decodedToken.role); // Ensure decodedToken is not null
+                    setIsAuthenticated(true);
                 }
 
-                const decodedToken = jwtDecode(newToken);
-                setIsAuthenticated(true);
-                setRole(decodedToken.role); // Assign role from token
 
             } catch (error) {
-                // Token is invalid or expired
+                console.error('Authentication check failed:', error); // Log the error
                 localStorage.removeItem('jwtToken');
                 setIsAuthenticated(false);
+                setRole(null);
             }
+            
         };
 
         checkAuth();
-    }, []);
+    }, [isAuthenticated, role]);
 
     return (
         <UserContext.Provider value={{ isAuthenticated, role }}>

@@ -26,10 +26,10 @@ const App = () => {
   return (
     <UserProvider>
       <Router>
-        <ScrollToTop >
+        <ScrollToTop />
         <CssBaseline />
         <MainContent />
-        </ScrollToTop>
+        {/* </ScrollToTop> */}
       </Router>
     </UserProvider>
   );

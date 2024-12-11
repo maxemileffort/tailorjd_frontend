@@ -21,7 +21,7 @@ const NotFound = () => {
         404
       </Typography>
       <Typography variant="h5" sx={{ marginBottom: 2 }}>
-        Oops! The page you're looking for doesn't exist.
+        This is not the page you're looking for.
       </Typography>
       <Typography variant="body1" sx={{ marginBottom: 4 }}>
         It might have been removed or you may have typed the wrong URL.
