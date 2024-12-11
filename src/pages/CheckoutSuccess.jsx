@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams  } from 'react-router-dom';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import Navbar from '../components/Navbar';
 
@@ -13,7 +13,10 @@ const CheckoutSuccess = () => {
   // const queryParams = new URLSearchParams(location.search);
   // const sessionId = queryParams.get('session_id');
 
-  const { sessionId } = useParams()
+  // const { sessionId } = useParams()
+
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get('session_id');
   
   // Fetch Stripe session details (optional)
   useEffect(() => {

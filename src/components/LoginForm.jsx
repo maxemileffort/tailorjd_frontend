@@ -23,7 +23,7 @@ const LoginForm = () => {
     const token = localStorage.getItem('jwtToken');
     if (token) {
         // Redirect to dashboard if already logged in
-        navigate('/userdashboard');
+        navigate('/user-dashboard');
     }
 }, [navigate]);
 
@@ -83,7 +83,7 @@ const LoginForm = () => {
       localStorage.setItem('jwtToken', token);
       
       // Redirect to the dashboard after successful login
-      navigate('/userdashboard');
+      navigate('/user-dashboard');
     } catch (error) {
       setError(error.message || 'An error occurred while logging in.');
       console.error(error);

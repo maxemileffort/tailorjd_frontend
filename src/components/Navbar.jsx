@@ -99,7 +99,7 @@ const Navbar = () => {
             // Dashboard Button
             <Button
               component={Link}
-              to="/userdashboard"
+              to="/user-dashboard"
               variant="contained"
               sx={{ display: { xs: 'none', md: 'block' },
                   bgcolor: 'white',
@@ -161,7 +161,7 @@ const Navbar = () => {
             <ListItemText primary="Pricing" />
           </ListItem>
           {isAuthenticated ? (
-            <ListItem button component={Link} to="/dashboard" onClick={toggleMenu}>
+            <ListItem button component={Link} to="/user-dashboard" onClick={toggleMenu}>
               <ListItemText primary="Dashboard" />
             </ListItem>
           ) : (
