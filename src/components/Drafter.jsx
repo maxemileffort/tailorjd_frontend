@@ -31,11 +31,14 @@ const Drafter = () => {
 
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      const response = await axiosInstance.post('/rewrites/draft', {
-        jd1,
-        jd2,
-        jd3,
-      });
+      const response = await axiosInstance.post('/rewrites/draft', 
+        {
+          jd1,jd2,jd3,
+        }, 
+        {
+          timeout: 10 * 1000 // Timeout set to 10000 milliseconds (10 seconds)
+        } 
+      );
 
       console.log('Response:', response.data);
 
