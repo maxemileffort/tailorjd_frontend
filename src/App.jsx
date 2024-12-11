@@ -23,7 +23,7 @@
 // import axiosInstance from './api/axiosInstance'; 
 
 // const App = () => {
-//   return (
+  //   return (
 //     <Router>
 //     <CssBaseline />
 //     <MainContent />
@@ -32,15 +32,15 @@
 // };
 
 // const MainContent = () => {
-//   const location = useLocation();
+  //   const location = useLocation();
 //   const shouldHideFooter = location.pathname.includes('dashboard');
 
 //   const [isAuthenticated, setIsAuthenticated] = useState(false);
 //   const [role, setRole] = useState('USER');
 
 //   useEffect(() => {
-//     const checkAuth = async () => {
-//       const token = localStorage.getItem('jwtToken');
+  //     const checkAuth = async () => {
+    //       const token = localStorage.getItem('jwtToken');
 
 //       if (!token) {
 //         setIsAuthenticated(false);
@@ -71,7 +71,7 @@
 
 //     checkAuth();
 //   }, []);
-  
+
 //   return (
 //     <Box
 //     sx={{
@@ -90,7 +90,7 @@
 //     <Route path="/legal" element={<LegalPage />} />
 //     <Route path="/features" element={<FeaturesPage />} />
 //     <Route path="/forgot-password" element={<PasswordRequest />} />
-    
+
 //     <Route path="/success" element={<CheckoutSuccess />} />
 //     <Route path="/signupsuccess" element={<SignUpSuccess />} />
 //     <Route path="/contact" element={<Contact />} />
@@ -110,7 +110,7 @@
 //     >
 //     <Route path="" element={<Admin />} />
 //     </Route>    
-    
+
 //     {/* Writer Protected Routes */}
 //     <Route
 //     path="/writer/*"
@@ -125,9 +125,9 @@
 //     >
 //     <Route path="" element={<Writer />} />
 //     </Route>  
-    
+
 //     <Route path="/reset/*" element={<PasswordReset />} />
-    
+
 //     <Route path="*" element={<NotFound />} />
 //     </Routes>
 //     </Box>
@@ -161,13 +161,16 @@ import NotFound from './pages/Error404'
 import Footer from './components/Footer';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { UserProvider, UserContext } from './context/UserContext';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
     <UserProvider>
       <Router>
+        <ScrollToTop >
         <CssBaseline />
         <MainContent />
+        </ScrollToTop>
       </Router>
     </UserProvider>
   );
@@ -178,67 +181,67 @@ const MainContent = () => {
   const shouldHideFooter = location.pathname.includes('dashboard');
   
   const { isAuthenticated, role } = React.useContext(UserContext);
-
+  
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-      }}
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
+    }}
     >
-      {/* Main Content */}
-      <Box component="main" sx={{ flexGrow: 1 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/legal" element={<LegalPage />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/forgot-password" element={<PasswordRequest />} />
-          <Route path="/success" element={<CheckoutSuccess />} />
-          <Route path="/signupsuccess" element={<SignUpSuccess />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/userdashboard" element={<UserDashboard role={role} />} />
-          <Route path="/pricing" element={<Pricing />} />
-
-          {/* Admin Protected Routes */}
-          <Route
-            path="/admin/*"
-            element={
-              <ProtectedRoute
-                isAuthenticated={isAuthenticated}
-                role={role}
-                requiredRoles={["ADMIN"]}
-                redirectPath="/"
-              />
-            }
-          >
-            <Route path="" element={<Admin />} />
-          </Route>
-
-          {/* Writer Protected Routes */}
-          <Route
-            path="/writer/*"
-            element={
-              <ProtectedRoute
-                isAuthenticated={isAuthenticated}
-                role={role}
-                requiredRoles={["ADMIN", "WRITER"]}
-                redirectPath="/"
-              />
-            }
-          >
-            <Route path="" element={<Writer />} />
-          </Route>
-
-          <Route path="/reset/*" element={<PasswordReset />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Box>
-      {/* Footer */}
-      {!shouldHideFooter && <Footer />}
+    {/* Main Content */}
+    <Box component="main" sx={{ flexGrow: 1 }}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
+        <Route path="/forgot-password" element={<PasswordRequest />} />
+        <Route path="/success" element={<CheckoutSuccess />} />
+        <Route path="/signupsuccess" element={<SignUpSuccess />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/userdashboard" element={<UserDashboard role={role} />} />
+        <Route path="/pricing" element={<Pricing />} />
+        
+        {/* Admin Protected Routes */}
+        <Route
+        path="/admin/*"
+        element={
+          <ProtectedRoute
+          isAuthenticated={isAuthenticated}
+          role={role}
+          requiredRoles={["ADMIN"]}
+          redirectPath="/"
+          />
+        }
+        >
+        <Route path="" element={<Admin />} />
+        </Route>
+        
+        {/* Writer Protected Routes */}
+        <Route
+        path="/writer/*"
+        element={
+          <ProtectedRoute
+          isAuthenticated={isAuthenticated}
+          role={role}
+          requiredRoles={["ADMIN", "WRITER"]}
+          redirectPath="/"
+          />
+        }
+        >
+        <Route path="" element={<Writer />} />
+        </Route>
+        
+        <Route path="/reset/*" element={<PasswordReset />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Box>
+    {/* Footer */}
+    {!shouldHideFooter && <Footer />}
     </Box>
   );
 };
