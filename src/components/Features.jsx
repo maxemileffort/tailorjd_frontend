@@ -10,8 +10,8 @@ const Features = () => {
 
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
-          <Typography variant="h5" color="primary">
-            Effortless Customization
+          <Typography variant="h5" color="black">
+            <u>Effortless Customization</u>
           </Typography>
           <Typography>
             Automatically tailor resumes and cover letters to match any job description in seconds.
@@ -19,8 +19,8 @@ const Features = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <Typography variant="h5" color="primary">
-            Smarter Applications
+          <Typography variant="h5" color="black">
+            <u>Smarter Applications</u>
           </Typography>
           <Typography>
             Get AI-driven insights to optimize your applications and boost your chances of getting noticed.
@@ -28,8 +28,8 @@ const Features = () => {
         </Grid>
 
         <Grid item xs={12} md={4}>
-          <Typography variant="h5" color="primary">
-            Time-Saving Tools
+          <Typography variant="h5" color="black">
+            <u>Time-Saving Tools</u>
           </Typography>
           <Typography>
             Streamline your job hunt with tools designed to save time and effort, all in one place.

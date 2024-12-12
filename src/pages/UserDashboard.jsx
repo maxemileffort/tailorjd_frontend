@@ -34,7 +34,7 @@ const UserDashboard = ({ role }) => {
   
   const fetchCreditBalance = async () => {
     try {
-      const jwtToken = localStorage.getItem('jwtToken');
+      const jwtToken = sessionStorage.getItem('jwtToken');
       if (!jwtToken) {
         console.error('Not authenticated.');
         // Redirect to login

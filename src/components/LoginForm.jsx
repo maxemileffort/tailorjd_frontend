@@ -20,7 +20,7 @@ const LoginForm = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('jwtToken');
+    const token = sessionStorage.getItem('jwtToken');
     if (token) {
         // Redirect to dashboard if already logged in
         navigate('/user-dashboard');
@@ -80,7 +80,7 @@ const LoginForm = () => {
       const { token } = data; // Adjust according to your response structure
 
       // Store the token in local storage (not recommended for sensitive info)
-      localStorage.setItem('jwtToken', token);
+      sessionStorage.setItem('jwtToken', token);
       
       // Redirect to the dashboard after successful login
       navigate('/user-dashboard');

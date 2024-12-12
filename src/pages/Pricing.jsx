@@ -31,8 +31,8 @@ const Pricing = () => {
         <ALaCarteCards />
         {/* Free Credits Callout */}
         <Box py={4}>
-          <Typography variant="h5" color="primary">
-            Try Us Risk-Free: Get 5 Credits just for Signing Up!
+          <Typography variant="h5" color="black">
+            <u>Try Us Risk-Free: Get 5 Credits just for Signing Up!</u>
           </Typography>
           <Typography variant="body1" color="textSecondary" sx={{ mt: 1 }}>
             Sign up today and start exploring with 5 free credits. No commitments. No card required.

@@ -18,12 +18,12 @@ const DocCollections = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [prettyPrint, setPrettyPrint] = useState(false);
-  const [sortAscending, setSortAscending] = useState(true);
+  const [sortAscending, setSortAscending] = useState(false);
 
   useEffect(() => {
     const fetchCollections = async () => {
       try {
-        const token = localStorage.getItem('jwtToken');
+        const token = sessionStorage.getItem('jwtToken');
         if (!token) {
           window.location.href = '/login';
           return;

@@ -5,7 +5,7 @@ import Workspace from '../components/Workspace';
 import Learning from '../components/Learning';
 import Settings from '../components/Settings';
 import Support from '../components/Support';
-import DashboardHome from '../components/DashboardHome';
+import DashboardHome from '../components/user/DashboardHome';
 
 const useDynamicComponentRenderer = () => {
   const [selectedComponent, setSelectedComponent] = useState('home');

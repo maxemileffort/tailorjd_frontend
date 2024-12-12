@@ -75,7 +75,7 @@ const SignUpForm = () => {
     const { token } = data; // Adjust according to your response structure
 
     // Store the token in local storage (not recommended for sensitive info)
-    localStorage.setItem('jwtToken', token);
+    sessionStorage.setItem('jwtToken', token);
     
     // Redirect to the dashboard
     // navigate('/user-dashboard');

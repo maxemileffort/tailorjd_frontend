@@ -22,16 +22,49 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import { UserProvider, UserContext } from './context/UserContext';
 import ScrollToTop from './components/ScrollToTop';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FFD814', // Yellow
+    },
+    secondary: {
+      main: '#FFA41C', // Orange
+    },
+    error: {
+      main: '#f44336', // 
+    },
+    background: {
+      default: '#f5f5f5', // 
+      paper: '#ffffff',  // 
+    },
+    text: {
+      primary: '#000000', // 
+      secondary: '#757575', // 
+    },
+    // Adding a tertiary color
+    tertiary: {
+      main: '#021AFD', // Blue
+      contrastText: '#ffffff', // Optional contrast text color
+    },
+  },
+});
+
 const App = () => {
   return (
+    <ThemeProvider theme={theme}>
+    <Router>
     <UserProvider>
-      <Router>
+      
         <ScrollToTop />
         <CssBaseline />
         <MainContent />
         {/* </ScrollToTop> */}
-      </Router>
+      
     </UserProvider>
+    </Router>
+    </ThemeProvider>
   );
 };
 

@@ -1,19 +1,20 @@
 // context/UserContext.js
 import React, { createContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axiosInstance from '../api/axiosInstance';
-// import jwtDecode from 'jwt-decode';
 import { parseJwt } from '../utils/jwtParser';
 
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+    const location = useLocation();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [role, setRole] = useState(null);
 
     useEffect(() => {
         const checkAuth = async () => {
-            const token = localStorage.getItem('jwtToken');
+            const token = sessionStorage.getItem('jwtToken');
 
             if (!token) {
                 setIsAuthenticated(false);
@@ -30,17 +31,19 @@ const UserProvider = ({ children }) => {
                 const newToken = response.data.token;
 
                 // Update the token if it was refreshed
-                if (newToken && newToken !== token) {
-                    const decodedToken = parseJwt(newToken);
-                    console.log(`decodedToken: ${decodedToken}`);
-                    setRole(decodedToken.role); // Ensure decodedToken is not null
-                    setIsAuthenticated(true);
-                }
+                // if (newToken && newToken !== token) {
+                const decodedToken = parseJwt(newToken);
+                console.log(`decodedToken: ${decodedToken}`);
+                sessionStorage.setItem('jwtToken', newToken);
+                // }
+
+                setRole(decodedToken.role); // Ensure decodedToken is not null
+                setIsAuthenticated(true);
 
 
             } catch (error) {
                 console.error('Authentication check failed:', error); // Log the error
-                localStorage.removeItem('jwtToken');
+                sessionStorage.removeItem('jwtToken');
                 setIsAuthenticated(false);
                 setRole(null);
             }
@@ -48,7 +51,7 @@ const UserProvider = ({ children }) => {
         };
 
         checkAuth();
-    }, [isAuthenticated, role]);
+    }, [isAuthenticated, role, location.pathname]);
 
     return (
         <UserContext.Provider value={{ isAuthenticated, role }}>

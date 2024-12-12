@@ -20,7 +20,7 @@ const Rewriter = () => {
   useEffect(() => {
     const fetchCurrentResume = async () => {
       try {
-        const token = localStorage.getItem('jwtToken');
+        const token = sessionStorage.getItem('jwtToken');
         if (!token) {
           window.location.href = '/login';
           return;

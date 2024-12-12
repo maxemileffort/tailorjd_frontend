@@ -17,7 +17,7 @@ axiosInstance.interceptors.response.use(
       error.response.status === 401
     ) {
       // Clear local storage or cookies
-      localStorage.removeItem('jwtToken');
+      sessionStorage.removeItem('jwtToken');
       // Check if the URL contains 'dashboard'
       if (error.config.url.includes('dashboard') ){
         // Redirect to login page

@@ -26,7 +26,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem('jwtToken');
+      const token = sessionStorage.getItem('jwtToken');
 
       if (!token) {
         setIsAuthenticated(false);
@@ -44,14 +44,14 @@ const Navbar = () => {
 
         // Update the token if it was refreshed
         if (newToken && newToken !== token) {
-          localStorage.setItem('jwtToken', newToken);
+          sessionStorage.setItem('jwtToken', newToken);
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
         }
 
         setIsAuthenticated(true);
       } catch (error) {
         // Token is invalid or expired
-        localStorage.removeItem('jwtToken');
+        sessionStorage.removeItem('jwtToken');
         setIsAuthenticated(false);
       } finally {
         setLoading(false);
@@ -127,7 +127,7 @@ const Navbar = () => {
                 sx={{
                   display: { xs: 'none', md: 'block' },
                   bgcolor: 'white',
-                  color: '#1976D2',
+                  color: 'black',
                 }}
               >
                 Login

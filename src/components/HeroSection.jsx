@@ -14,7 +14,7 @@ const HeroSection = () => {
         justifyContent: 'center',
         textAlign: 'center',
         backgroundColor: 'primary.main',
-        color: 'white',
+        color: 'black',
         py: 8,
         px: 2,
       }}
