@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import Navbar from '../components/Navbar';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/user/LoginForm';
 import { Box, Typography } from '@mui/material';
 
 const Login = () => {
