@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import Profile from '../components/Profile';
-import DocCollections from '../components/DocCollections';
-import Workspace from '../components/Workspace';
-import Learning from '../components/Learning';
-import Settings from '../components/Settings';
-import Support from '../components/Support';
+import Profile from '../components/user/Profile';
+import DocCollections from '../components/user/DocCollections';
+import Workspace from '../components/user/Workspace';
+import Learning from '../components/user/Learning';
+import Settings from '../components/user/Settings';
+import Support from '../components/user/Support';
 import DashboardHome from '../components/user/DashboardHome';
 
 const useDynamicComponentRenderer = () => {

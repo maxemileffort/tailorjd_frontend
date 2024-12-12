@@ -7,10 +7,10 @@ import {
   Typography
 } from '@mui/material';
 import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS } from 'react-joyride';
-import SimpleFooter from '../components/FooterSimple';
-import SideBarToggle from '../components/SideBarToggle';       // Adjust the path as needed
-import DashboardSidebar from '../components/DashboardSidebar';
-import NotificationBar from '../components/NotificationBar';
+import SimpleFooter from '../components/user/FooterSimple';
+import SideBarToggle from '../components/user/SideBarToggle';       // Adjust the path as needed
+import DashboardSidebar from '../components/user/DashboardSidebar';
+import NotificationBar from '../components/user/NotificationBar';
 import useDynamicComponentRenderer from '../hooks/useDynamicComponentRenderer';
 
 
