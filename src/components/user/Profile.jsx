@@ -7,7 +7,7 @@ import {
     CircularProgress,
     Alert,
 } from '@mui/material';
-import axiosInstance from '../api/axiosInstance';
+import axiosInstance from '../../api/axiosInstance';
 
 const Profile = () => {
     const defaultProfileData = {

@@ -7,7 +7,7 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
-import axiosInstance from '../api/axiosInstance'; 
+import axiosInstance from '../../api/axiosInstance'; 
 
 const Rewriter = () => {
   const [userResume, setUserResume] = useState('');

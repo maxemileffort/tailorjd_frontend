@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AdminSidebar from '../components/admin/AdminSidebar';
-import SideBarToggle from '../components/SideBarToggle'; 
+import SideBarToggle from '../components/user/SideBarToggle'; 
 import useAdminComponentRenderer from '../hooks/useAdminComponentRenderer';
 import { Box, Typography } from '@mui/material';
 
@@ -17,10 +17,13 @@ const AdminPage = () => {
         onSelect={setSelectedComponent } 
         isOpen={isOpen}
         onClose={() => setIsOpen(false)} />
-      <Typography variant='body1' sx={{display: 'flex', alignItems: 'center'}}>
-      <SideBarToggle onToggle={() => setIsOpen(true)} /> Menu
-      </Typography>
-      <Box sx={{ flexGrow: 1, p: 3 }}>{renderComponent()}</Box>
+      <Box sx={{ display: 'flex', flexDirection: "column", mt: 2}}>
+        <Typography variant='body1' sx={{display: 'flex', alignItems: 'center'}}>
+        <SideBarToggle  onToggle={() => setIsOpen(true)} /> Menu
+        </Typography>
+        <Box sx={{ flexGrow: 1, p: 3 }}>{renderComponent()}</Box>
+      </Box>
+      
     </Box>
   );
 };

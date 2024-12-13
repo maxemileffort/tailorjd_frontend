@@ -8,9 +8,11 @@ import {
   Alert,
   Switch,
   FormControlLabel,
+  TextField,
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import axiosInstance from '../api/axiosInstance'; // Adjust the path accordingly
+import EditIcon from '@mui/icons-material/Edit'
+import axiosInstance from '../../api/axiosInstance'; // Adjust the path accordingly
 
 const DocCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -18,7 +20,9 @@ const DocCollections = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [prettyPrint, setPrettyPrint] = useState(false);
-  const [sortAscending, setSortAscending] = useState(false);
+  const [sortAscending, setSortAscending] = useState(true);
+  const [editingCollectionId, setEditingCollectionId] = useState(null);
+  const [newCollectionName, setNewCollectionName] = useState('');
 
   useEffect(() => {
     const fetchCollections = async () => {
@@ -40,6 +44,7 @@ const DocCollections = () => {
     };
 
     fetchCollections();
+    handleToggleSortOrder();
   }, []);
 
   const handleTogglePrettyPrint = () => setPrettyPrint((prev) => !prev);
@@ -53,6 +58,38 @@ const DocCollections = () => {
           : new Date(a.createdAt) - new Date(b.createdAt) // Sort ascending
       )
     );
+  };
+
+  const handleCollectionNameDoubleClick = (collection) => {
+    setEditingCollectionId(collection.id);
+    setNewCollectionName(collection.collectionName);
+  };
+
+  const handleCollectionNameBlur = async (collectionId) => {
+    if (newCollectionName.trim() === '') {
+      setEditingCollectionId(null);
+      return;
+    }
+
+    try {
+      await axiosInstance.put('/rewrites/doc-collections/update', {
+        id: collectionId,
+        newName: newCollectionName,
+      });
+
+      setCollections((prevCollections) =>
+        prevCollections.map((collection) =>
+          collection.id === collectionId
+            ? { ...collection, collectionName: newCollectionName }
+            : collection
+        )
+      );
+    } catch (err) {
+      console.error('Error updating collection name:', err);
+      setError('An error occurred while updating the collection name.');
+    } finally {
+      setEditingCollectionId(null);
+    }
   };
 
   return (
@@ -72,10 +109,7 @@ const DocCollections = () => {
               paddingBottom: 1,
             }}
           >
-            <Button
-              variant="contained"
-              onClick={() => setSelectedDoc(null)}
-            >
+            <Button variant="contained" onClick={() => setSelectedDoc(null)}>
               Back
             </Button>
             <FormControlLabel
@@ -158,9 +192,34 @@ const DocCollections = () => {
           ) : (
             collections.map((collection) => (
               <Box key={collection.id} sx={{ mb: 4 }}>
-                <Typography variant="h5" gutterBottom>
-                  Collection - {collection.collectionName}
-                </Typography>
+                {editingCollectionId === collection.id ? (
+                  <TextField
+                    value={newCollectionName}
+                    onChange={(e) => setNewCollectionName(e.target.value)}
+                    onBlur={() => handleCollectionNameBlur(collection.id)}
+                    autoFocus
+                    fullWidth
+                  />
+                ) : (
+                  <Box sx={{display: "flex"}}>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    onDoubleClick={() => handleCollectionNameDoubleClick(collection)}
+                    sx={{ cursor: 'pointer', mr: 2 }}
+                  >
+                    Collection - {collection.collectionName}
+                  </Typography>
+
+                  {/* Edit icon for mobile devices */}
+                  <Box
+                  onClick={() => handleCollectionNameDoubleClick(collection)}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  <EditIcon color="primary" />
+                </Box>
+                </Box>
+                )}
                 <Typography variant="subtitle2" gutterBottom>
                   Created At: {new Date(collection.createdAt).toLocaleString()}
                 </Typography>

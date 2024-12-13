@@ -6,7 +6,7 @@ import {
   Typography,
   Alert,
 } from '@mui/material';
-import axiosInstance from '../api/axiosInstance'; // Adjust the path accordingly
+import axiosInstance from '../../api/axiosInstance'; // Adjust the path accordingly
 
 const Drafter = () => {
   const [jd1, setJd1] = useState('');

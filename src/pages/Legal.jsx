@@ -2,9 +2,9 @@ import React from "react";
 import { Container, Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Navbar from "../components/Navbar";
-import TermsOfService from "../components/TermsOfService";
-import PrivacyPolicy from "../components/PrivacyPolicy";
-import CookiePolicy from "../components/CookiePolicy";
+import TermsOfService from "../components/legal/TermsOfService";
+import PrivacyPolicy from "../components/legal/PrivacyPolicy";
+import CookiePolicy from "../components/legal/CookiePolicy";
 import CallToAction from "../components/CTAFreeCredits";
 
 const LegalPage = () => {
