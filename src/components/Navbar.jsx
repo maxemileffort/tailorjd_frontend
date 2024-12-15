@@ -75,8 +75,8 @@ const Navbar = () => {
       /> 
       <Typography
       variant="h6"
-      component={Link}
-      to="/"
+      // component={Link}
+      // to="/"
       sx={{ flexGrow: 1, textDecoration: 'none', color: 'black', ml: 1 }}
       >
        | TailorJD

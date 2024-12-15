@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { parseJwt } from '../utils/jwtParser'
 
 import {
     Box,
@@ -18,6 +19,15 @@ const stripePromise = loadStripe(pk);
 const ALaCarteCards = () => {
     const navigate = useNavigate();
 
+    const token = sessionStorage.getItem('jwtToken');
+    let userId;
+
+    if (token) {
+      const decodedToken = parseJwt(token);
+      // console.log(JSON.stringify(decodedToken));
+      userId = decodedToken.id;
+    }
+
     const handleCheckout = async (planId) => {
       try {
         const stripe = await stripePromise;
@@ -25,7 +35,7 @@ const ALaCarteCards = () => {
         const response = await fetch(`${apiUrl}/api/checkouts/create-checkout-session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ planId }),
+          body: JSON.stringify({ planId, userId : userId || null }),
         });
   
         const { id: sessionId } = await response.json();
@@ -44,7 +54,7 @@ const ALaCarteCards = () => {
           </Typography>
           <Grid2 container spacing={4} justifyContent="center">
             {/* 10 Credits */}
-            <Grid2 item xs={12} sm={6} md={4}>
+            <Grid2 xs={12} sm={6} md={4}>
               <Card elevation={3} sx={{ height: '100%', width: '275px' }}>
                 <CardContent>
                   <Typography variant="h5" gutterBottom>
@@ -71,7 +81,7 @@ const ALaCarteCards = () => {
             </Grid2>
 
             {/* 50 Credits */}
-            <Grid2 item xs={12} sm={6} md={4}>
+            <Grid2 xs={12} sm={6} md={4}>
               <Card elevation={3} sx={{ height: '100%', width: '275px' }}>
                 <CardContent>
                   <Typography variant="h5" gutterBottom>

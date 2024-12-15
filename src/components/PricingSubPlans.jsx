@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { parseJwt } from '../utils/jwtParser'
+
 import { 
     Box, 
     Typography, 
@@ -18,6 +20,15 @@ const stripePromise = loadStripe(pk);
 const PricingSubPlans = () => {
   const navigate = useNavigate();
 
+  const token = sessionStorage.getItem('jwtToken');
+    let userId;
+
+    if (token) {
+      const decodedToken = parseJwt(token);
+      // console.log(JSON.stringify(decodedToken));
+      userId = decodedToken.id;
+    }
+
   const handleCheckout = async (planId) => {
     try {
       const stripe = await stripePromise;
@@ -25,7 +36,7 @@ const PricingSubPlans = () => {
       const response = await fetch(`${apiUrl}/api/checkouts/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planId }),
+        body: JSON.stringify({ planId, userId : userId || null }),
       });
 
       const { id: sessionId } = await response.json();
@@ -49,7 +60,7 @@ const PricingSubPlans = () => {
         sx={{ alignItems: 'stretch' }} // Ensures all items stretch
       >
         {/* Standard Plan */}
-        <Grid2 item xs={12} sm={6} md={4} sx={{ display: 'flex' }}> {/* Ensure each Grid2 stretches */}
+        <Grid2 xs={12} sm={6} md={4} sx={{ display: 'flex' }}> {/* Ensure each Grid2 stretches */}
           <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', flex: 1 }}>
             <Card 
               elevation={3} 
@@ -90,7 +101,7 @@ const PricingSubPlans = () => {
         </Grid2>
 
         {/* Silver Plan */}
-        <Grid2 item xs={12} sm={6} md={4} sx={{ display: 'flex' }}>
+        <Grid2  xs={12} sm={6} md={4} sx={{ display: 'flex' }}>
           <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', flex: 1 }}>
             <Chip
               label="Most Popular"
@@ -144,7 +155,7 @@ const PricingSubPlans = () => {
         </Grid2>
 
         {/* Gold Plan */}
-        <Grid2 item xs={12} sm={6} md={4} sx={{ display: 'flex' }}>
+        <Grid2  xs={12} sm={6} md={4} sx={{ display: 'flex' }}>
           <Box sx={{ position: 'relative', display: 'flex', flexDirection: 'column', flex: 1 }}>
             <Chip
               label="Best Deal"

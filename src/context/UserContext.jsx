@@ -33,11 +33,11 @@ const UserProvider = ({ children }) => {
                 // Update the token if it was refreshed
                 // if (newToken && newToken !== token) {
                 const decodedToken = parseJwt(newToken);
-                console.log(`decodedToken: ${decodedToken}`);
+                // console.log(`decodedToken: ${decodedToken}`);
                 sessionStorage.setItem('jwtToken', newToken);
                 // }
 
-                setRole(decodedToken.role); // Ensure decodedToken is not null
+                setRole(decodedToken.role); 
                 setIsAuthenticated(true);
 
 
