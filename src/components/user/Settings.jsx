@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useState } from 'react';
-import { axiosInstance } from '../../api/axiosInstance'
+import axiosInstance from '../../api/axiosInstance'
 
 
 const BillingPortalButton = () => {
