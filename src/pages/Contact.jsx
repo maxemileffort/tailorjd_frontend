@@ -126,13 +126,10 @@ const Contact = () => {
           Contact Information
         </Typography>
         <Typography variant="body1" color="textSecondary">
-          <strong>Email:</strong> support@example.com
+          <strong>Email:</strong> hello@tailorjd.com
         </Typography>
         <Typography variant="body1" color="textSecondary">
-          <strong>Phone:</strong> +1 (555) 123-4567
-        </Typography>
-        <Typography variant="body1" color="textSecondary">
-          <strong>Address:</strong> 123 Main Street, Suite 400, Cityville, CA 98765
+          <strong>Phone:</strong> +1 (918) 324-7678
         </Typography>
       </Box>
     </Container>
