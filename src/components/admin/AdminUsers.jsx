@@ -160,8 +160,9 @@ const AdminUsers = () => {
     try {
       for (const userId of selectedUserIds) {
         await updateCredits(userId, batchCredits);
-        alert(`Credits updated successfully for selected users!`);
+        
       }
+      alert(`Credits updated successfully for selected users!`);
       fetchUsers(); // Refresh user data
     } catch (error) {
       console.error('Error during batch update:', error);
