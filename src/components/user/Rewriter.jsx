@@ -53,9 +53,9 @@ const Rewriter = () => {
           user_resume: userResume,
           jd: jobDescription,
         }, 
-        {
-          timeout: 10 * 1000 // Timeout set to 10000 milliseconds (10 seconds)
-        } 
+        // {
+        //   timeout: 10 * 1000 // Timeout set to 10000 milliseconds (10 seconds)
+        // } 
       );
 
       console.log('Response:', response.data);

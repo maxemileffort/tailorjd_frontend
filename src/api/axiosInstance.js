@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 20 * 1000 // set to 20 seconds
 });
 
 // Add a response interceptor
