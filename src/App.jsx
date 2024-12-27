@@ -60,7 +60,6 @@ const App = () => {
         <ScrollToTop />
         <CssBaseline />
         <MainContent />
-        {/* </ScrollToTop> */}
       
     </UserProvider>
     </Router>
