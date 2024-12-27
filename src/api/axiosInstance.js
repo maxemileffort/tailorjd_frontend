@@ -15,7 +15,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (
-      error.response.status === 401
+      error.response && error.response.status === 401
     ) {
       // Clear local storage or cookies
       sessionStorage.removeItem('jwtToken');
