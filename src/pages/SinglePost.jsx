@@ -92,7 +92,7 @@ const SingleBlogPost = () => {
   
   if (!article) {
     return (
-      <Typography variant="h6" sx={{ mt: 4 }}>
+      <Typography variant="h6" sx={{ mt: 4, mb: 4 }}>
       Article not found.
       </Typography>
     );
@@ -128,7 +128,7 @@ const SingleBlogPost = () => {
     </Helmet>
     <Box>
     <Navbar />
-    <Box sx={{ maxWidth: '800px', mx: 'auto', mt: 4 }}>
+    <Box sx={{ maxWidth: '800px', mx: 'auto', mt: 4, mb: 4 }}>
     <Typography variant="h4" gutterBottom>
     {article.title}
     </Typography>

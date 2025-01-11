@@ -10,28 +10,29 @@ const WriteArticlesComponent = () => {
     metaTitle: '',
     metaDescription: '',
     schemaMarkup: '',
+    slug: '',
     authorId: '',
   });
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState('');
   const [serverSuccess, setServerSuccess] = useState('');
-
+  
   // Fetch authors when the component mounts
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
         const response = await axiosInstance.get('/users/writers'); // Use axiosInstance
         setAuthors(response.data.filter(el => ['ADMIN', 'WRITER'].includes(el.role)));
-        console.log(authors);
+        // console.log(authors);
       } catch (error) {
         console.error('Error fetching authors:', error);
         setServerError('Failed to load authors. Please try again later.');
       }
     };
-
+    
     fetchAuthors();
   }, []);
-
+  
   // Handle form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,18 +41,34 @@ const WriteArticlesComponent = () => {
     setServerError(''); // Clear server error on user interaction
     setServerSuccess(''); // Clear server success on user interaction
   };
-
+  
+  // Automatically generates a slug based on title
+  const handleTitleBlur = (event) => {
+    const { value } = event.target;
+    // Generate a slug from the title
+    const slugValue = value
+    .trim() // Remove leading/trailing spaces
+    .toLowerCase() // Convert to lowercase
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-'); // Replace multiple hyphens with a single hyphen
+    
+    setFormData((prev) => ({ ...prev, slug: slugValue }));
+  };
+  
+  
   // Validate form
   const validateForm = () => {
     const newErrors = {};
     if (!formData.title) newErrors.title = 'Title is required.';
+    if (!formData.slug) newErrors.slug = 'Unique slug is required.';
     if (!formData.content) newErrors.content = 'Body is required.';
     if (!formData.schemaMarkup) newErrors.schemaMarkup = 'Schema Markup is required.';
     if (!formData.authorId) newErrors.authorId = 'Author selection is required.';
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
-
+  
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,6 +83,7 @@ const WriteArticlesComponent = () => {
         metaTitle: '',
         metaDescription: '',
         schemaMarkup: '',
+        slug: '',
         authorId: '',
       });
       setServerError('');
@@ -74,7 +92,7 @@ const WriteArticlesComponent = () => {
       setServerError('Failed to create article. Please try again.');
     }
   };
-
+  
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 600, mx: 'auto' }}>
       <Typography variant="h4" gutterBottom>
@@ -87,8 +105,19 @@ const WriteArticlesComponent = () => {
         name="title"
         value={formData.title}
         onChange={handleChange}
+        onBlur={handleTitleBlur}
         error={!!errors.title}
         helperText={errors.title}
+        fullWidth
+        required
+      />
+      <TextField
+        label="Slug"
+        name="slug"
+        value={formData.slug}
+        onChange={handleChange}
+        error={!!errors.slug}
+        helperText={errors.slug}
         fullWidth
         required
       />
@@ -143,11 +172,11 @@ const WriteArticlesComponent = () => {
         fullWidth
         required
       >
-        {authors.map((author) => (
-          <MenuItem key={author.id} value={author.id}>
-            {author.email} {/* Use another field like `author.name` if available */}
-          </MenuItem>
-        ))}
+      {authors.map((author) => (
+        <MenuItem key={author.id} value={author.id}>
+          {author.email} {/* Use another field like `author.name` if available */}
+        </MenuItem>
+      ))}
       </TextField>
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Submit Article

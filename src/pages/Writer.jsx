@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import WriterSidebar from '../components/writer/WriterSidebar';
 import WriteArticlesComponent from '../components/writer/WriteArticlesComponent';
+import EditArticlesComponent from '../components/writer/EditArticlesComponent';
 import { Box, Typography } from '@mui/material';
 
 const WriterPage = () => {
@@ -11,7 +12,7 @@ const WriterPage = () => {
       case 'articles':
         return <WriteArticlesComponent />;
       case 'edit':
-        return <Typography variant="h4">Edit Articles</Typography>;
+        return <EditArticlesComponent />;
       case 'manage':
         return <Typography variant="h4">Manage Articles</Typography>;
       default:
