@@ -17,6 +17,8 @@ import LegalPage from './pages/Legal';
 import FeaturesPage from './pages/FeaturesPage';
 import Writer from './pages/Writer';
 import NotFound from './pages/Error404'
+import Blog from './pages/Blog'
+import SingleBlogPost from './pages/SinglePost'
 import Footer from './components/Footer';
 import ProtectedRoute from './routes/ProtectedRoute';
 import { UserProvider, UserContext } from './context/UserContext';
@@ -96,6 +98,9 @@ const MainContent = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/user-dashboard" element={<UserDashboard role={role} />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<SingleBlogPost />} />
+
         
         {/* Admin Protected Routes */}
         <Route

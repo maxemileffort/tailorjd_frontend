@@ -22,6 +22,19 @@ const UserProvider = ({ children }) => {
                 return;
             }
 
+            const isTokenExpired = (token) => {
+                const decoded = parseJwt(token);
+                const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+                return decoded.exp < currentTime; // Compare expiry time
+              };
+              
+              if (token && isTokenExpired(token)) {
+                sessionStorage.removeItem('jwtToken');
+                setIsAuthenticated(false);
+                setRole(null);
+                return;
+              }              
+
             try {
                 // Set the Authorization header
                 axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -31,7 +44,7 @@ const UserProvider = ({ children }) => {
                 const newToken = response.data.token;
 
                 // Update the token if it was refreshed
-                // if (newToken && newToken !== token) {
+                if (newToken && newToken !== token) {
                 const decodedToken = parseJwt(newToken);
                 // console.log(`decodedToken: ${decodedToken}`);
                 sessionStorage.setItem('jwtToken', newToken);
@@ -39,6 +52,7 @@ const UserProvider = ({ children }) => {
 
                 setRole(decodedToken.role); 
                 setIsAuthenticated(true);
+                }
 
 
             } catch (error) {
@@ -51,7 +65,7 @@ const UserProvider = ({ children }) => {
         };
 
         checkAuth();
-    }, [isAuthenticated, role, location.pathname]);
+    }, [ location.pathname]);
 
     return (
         <UserContext.Provider value={{ isAuthenticated, role }}>
