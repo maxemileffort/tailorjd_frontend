@@ -24,7 +24,7 @@ const BillingPortalButton = () => {
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             const { data } = await axiosInstance.get('/users/billing')
             
-            const { portalUrl } = response.data;
+            const { portalUrl } = data;
             
             if (portalUrl) {
                 window.location.href = portalUrl; // Redirect to the Stripe portal
