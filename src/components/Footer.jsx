@@ -21,11 +21,11 @@ const Footer = () => {
                   Home
                 </RouterLink>
               </ListItem>
-              <ListItem>
+              {/* <ListItem>
                 <RouterLink to="/blog" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Blog
                 </RouterLink>
-              </ListItem>
+              </ListItem> */}
               <ListItem>
                 <RouterLink to="/features" style={{ textDecoration: 'none', color: 'inherit' }}>
                   Features
