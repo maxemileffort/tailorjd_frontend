@@ -248,9 +248,8 @@ const BulletRewriter = () => {
       });
       console.log('Response:', response.data);
       
-      const newJobId = response.data.jobId;
-      setJobId(newJobId);
-      checkJobStatus(newJobId);
+      const newBulletContent = response.data.jobId;
+      setNewBullets(newBulletContent);
       
       setSnackbarMessage('Rewrite happening in the background...');
       setSnackbarOpen(true);
