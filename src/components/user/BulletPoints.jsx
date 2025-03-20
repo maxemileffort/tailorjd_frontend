@@ -29,8 +29,6 @@ const BulletRewriter = () => {
       const newBulletContent = response.data.bulletContent;
       setNewBullets(newBulletContent);
       
-      setSnackbarMessage('Rewrite happening in the background...');
-      setSnackbarOpen(true);
     } catch (err) {
       console.error('Error submitting data:', err);
       setError('An error occurred while processing your request.');
