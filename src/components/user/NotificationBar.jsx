@@ -46,6 +46,7 @@ const NotificationBar = ({ creditBalance, adminMessage }) => {
           overflow: 'hidden',
           whiteSpace: 'nowrap',
           textOverflow: 'ellipsis',
+          fontWeight: 'bold',
         }}
       >
         {adminMessage || 'No new messages.'}

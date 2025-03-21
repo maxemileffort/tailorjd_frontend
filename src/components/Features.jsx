@@ -46,6 +46,14 @@ const Features = () => {
         With TailorJD, you harness the power of AI wizardry to do the heavy lifting for you!
       </Typography>
 
+
+      <Grid container justifyContent="center" style={{ margin: '2px 0 15px 0' }}>
+        <Grid item xs={12} sm={8} md={6}>
+          <img src="/TJD - Old vs New.jpg" alt="TailorJD illustration" style={{ width: '100%', height: 'auto', display: 'block', margin: '0 auto' }} />
+        </Grid>
+      </Grid>
+
+
         <br></br>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
