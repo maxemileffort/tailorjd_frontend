@@ -12,13 +12,19 @@ const DashboardHome = () => {
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
+                    If you're new, we highly recommend the tour.
+                </Typography>
+            </Box>
+
+            <Box mb={2}>
+                <Typography variant="body1" color="textSecondary">
                     At the top, you'll see your credit balance. Some actions--like Rewrites and Drafts--take more credits than others. Also, we will refer to Resume as Rez.
                 </Typography>
             </Box>
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
-                    A Rewrite has 3 parts:
+                    The main workflow is the Rewrite. A Rewrite has 3 parts:
                 </Typography>
                 <Typography variant="body1" color="textSecondary" component="ul" pl={2}>
                     <li>
@@ -46,15 +52,9 @@ const DashboardHome = () => {
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
-                    That's the basics. If more details would be helpful, you can use the menu to the
-                    left. Find the link for "Learning" and watch a few videos to learn more about the
-                    process.
-                </Typography>
-            </Box>
-
-            <Box mb={2}>
-                <Typography variant="body1" color="textSecondary">
-                    If you are interested, to learn your way around, there's also a tour.
+                    That's the basics. If more details would be helpful, you can open the 
+                    menu above, find the link for "Learning", and watch a few videos to 
+                    learn more about the process.
                 </Typography>
             </Box>
 
@@ -62,9 +62,33 @@ const DashboardHome = () => {
             <Typography variant="h4" gutterBottom>
                 Get Started
             </Typography>
-                <Typography variant="body1" color="textSecondary">
-                    When you're ready to get going, click on the Menu at the top, and then go to Workspaces on the left.
+            <Typography variant="body1" color="textSecondary">
+                When you're ready to get going, click on the Menu at the top, and then go to Workspaces on the left.
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+                There, you'll find 3 workflows:
+                <Typography variant="body1" color="textSecondary" component="ol" pl={2}>
+                    <li>
+                        <Typography component="span" textDecoration="underline">
+                            Rewriter -
+                        </Typography>{' '}
+                        Rewrites your rez to match a JD. This is where you'll probably spend most of your time.
+                    </li>
+                    <li>
+                        <Typography component="span" textDecoration="underline">
+                            Drafter -
+                        </Typography>{' '}
+                        Takes 3 JDs and creates a rez for you. Good for building an initial rez to add to your profile or use in the Rewriter.
+                    </li>
+                    <li>
+                        A{' '}
+                        <Typography component="span" textDecoration="underline">
+                            Bullet Rewriter -
+                        </Typography>{' '}
+                        Sometimes, you don't need an entire resume. This tool develops your bullet points under a resume Experience section.
+                    </li>
                 </Typography>
+            </Typography>
             </Box>
 
             <Box mt={4}>
