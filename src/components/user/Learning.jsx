@@ -3,20 +3,16 @@ import { Box, Typography, Grid } from '@mui/material';
 
 const videos = [
     {
-        title: "Getting Started with the Platform",
+        title: "Getting Started & Navigating the Platform",
         url: "https://www.youtube.com/embed/example1", // Replace "example1" with the actual video ID
     },
     {
-        title: "Navigating the Dashboard",
+        title: "Basic Workflows",
         url: "https://www.youtube.com/embed/example2", // Replace "example2" with the actual video ID
     },
     {
         title: "Customizing Your Profile",
         url: "https://www.loom.com/embed/example3", // Replace "example3" with the actual Loom video ID
-    },
-    {
-        title: "Advanced Features and Tips",
-        url: "https://www.youtube.com/embed/example4", // Replace "example4" with the actual video ID
     },
 ];
 
