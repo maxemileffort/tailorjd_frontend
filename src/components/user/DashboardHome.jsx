@@ -61,7 +61,14 @@ const DashboardHome = () => {
                 </Typography>
             </Box>
 
-            
+            <Box mb={2}>
+            <Typography variant="h4" gutterBottom>
+                Get Started
+            </Typography>
+                <Typography variant="body1" color="textSecondary">
+                    When you're ready to get going, click on the Menu at the top, and then go to Workspaces on the left.
+                </Typography>
+            </Box>
 
             <Box mt={4}>
                 <Typography variant="h4" gutterBottom>
