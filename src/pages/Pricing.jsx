@@ -32,10 +32,10 @@ const Pricing = () => {
         {/* Free Credits Callout */}
         <Box py={4}>
           <Typography variant="h5" color="black">
-            <u>Try Us Risk-Free: Get 5 Credits just for Signing Up!</u>
+            <u>Try Us Risk-Free: Get 20 Credits just for Signing Up!</u>
           </Typography>
           <Typography variant="body1" color="textSecondary" sx={{ mt: 1 }}>
-            Sign up today and start exploring with 5 free credits. No commitments. No card required.
+            Sign up today and start exploring with 20 free credits. No commitments. No card required.
           </Typography>
         </Box>
         <Button

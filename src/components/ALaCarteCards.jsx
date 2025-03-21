@@ -79,7 +79,7 @@ const ALaCarteCards = () => {
     <Card elevation={3} sx={{ height: '100%', width: '275px' }}>
     <CardContent>
     <Typography variant="h5" gutterBottom>
-    10 Credits
+    100 Credits
     </Typography>
     <Typography color="textSecondary" paragraph>
     $12
@@ -106,7 +106,7 @@ const ALaCarteCards = () => {
     <Card elevation={3} sx={{ height: '100%', width: '275px' }}>
     <CardContent>
     <Typography variant="h5" gutterBottom>
-    50 Credits
+    500 Credits
     </Typography>
     <Typography color="textSecondary" paragraph>
     $50

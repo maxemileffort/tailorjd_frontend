@@ -30,20 +30,20 @@ const PricingCompTable = () => {
         <tbody>
         <tr>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Standard</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>5</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>$1.00</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>50</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>$0.10</td>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Casual Job Seekers</td>
         </tr>
         <tr>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Silver</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>50</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>$0.50</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>500</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>$0.05</td>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Motivated Professionals</td>
         </tr>
         <tr>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Gold</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>150</td>
-        <td style={{ border: '2px solid #555', padding: '8px' }}>$0.33</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>1500</td>
+        <td style={{ border: '2px solid #555', padding: '8px' }}>$0.03</td>
         <td style={{ border: '2px solid #555', padding: '8px' }}>Coaches and Career Changers</td>
         </tr>
         </tbody>

@@ -100,7 +100,7 @@ const PricingSubPlans = () => {
     $5 / month
     </Typography>
     <Typography variant="h6" sx={{ mt: 2 }}>
-    5 credits / month
+    50 credits / month
     </Typography>
     <Typography color="textSecondary" variant="body2">
     Great for casual job searching.
@@ -154,7 +154,7 @@ const PricingSubPlans = () => {
     $25 / month
     </Typography>
     <Typography variant="h6" sx={{ mt: 2 }}>
-    50 credits / month
+    500 credits / month
     </Typography>
     <Typography color="textSecondary" variant="body2">
     Perfect for motivated job hunters.
@@ -208,7 +208,7 @@ const PricingSubPlans = () => {
     $50 / month
     </Typography>
     <Typography variant="h6" sx={{ mt: 2 }}>
-    150 credits / month
+    1500 credits / month
     </Typography>
     <Typography color="textSecondary" variant="body2">
     Best for job coaches and career changers.

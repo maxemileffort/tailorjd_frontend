@@ -12,10 +12,7 @@ const DashboardHome = () => {
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
-                    At the top, you'll see your credit balance. One credit = one{' '}
-                    <Typography component="span" fontWeight="bold">
-                        Rewrite
-                    </Typography>. Also, we will refer to Resume as Rez.
+                    At the top, you'll see your credit balance. Some actions--like Rewrites and Drafts--take more credits than others. Also, we will refer to Resume as Rez.
                 </Typography>
             </Box>
 
