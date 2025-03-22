@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   TextField,
@@ -12,7 +13,9 @@ import {
 import CloseIcon from '@mui/icons-material/Close'; // Import close icon
 import axiosInstance from '../../api/axiosInstance';
 
-const Rewriter = ({ setSelectedComponent }) => {
+const Rewriter = () => {
+  const navigate = useNavigate();
+
   const [userResume, setUserResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -204,7 +207,7 @@ const Rewriter = ({ setSelectedComponent }) => {
                 onClose={handleSnackbarClose}
                 message={snackbarMessage}
                 action={
-                    <Button color="inherit" onClick={() => setSelectedComponent('docCollections')}>
+                    <Button color="inherit" onClick={() => {navigate('/user-dashboard/doc-collections');}}>
                         Go to Doc Collections
                     </Button>
                 }

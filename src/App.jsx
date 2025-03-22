@@ -96,6 +96,14 @@ const MainContent = () => {
         <Route path="/success" element={<CheckoutSuccess />} />
         <Route path="/signupsuccess" element={<SignUpSuccess />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/user-dashboard/home" element={<UserDashboard role={role} />} />
+        <Route path="/user-dashboard/profile" element={<UserDashboard role={role} subElement={'profile'}/>} />
+        <Route path="/user-dashboard/doc-collections" element={<UserDashboard role={role} subElement={'docCollections'}/>} />
+        <Route path="/user-dashboard/docCollections" element={<UserDashboard role={role} subElement={'docCollections'}/>} />
+        <Route path="/user-dashboard/workspace" element={<UserDashboard role={role} subElement={'workspace'}/>} />
+        <Route path="/user-dashboard/learning" element={<UserDashboard role={role} subElement={'learning'}/>} />
+        <Route path="/user-dashboard/settings" element={<UserDashboard role={role} subElement={'settings'}/>} />
+        <Route path="/user-dashboard/support" element={<UserDashboard role={role} subElement={'support'}/>} />
         <Route path="/user-dashboard" element={<UserDashboard role={role} />} />
         <Route path="/pricing" element={<Pricing />} />
         {/* <Route path="/blog" element={<Blog />} /> */}

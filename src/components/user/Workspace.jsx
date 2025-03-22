@@ -35,7 +35,7 @@ const Workspace = () => {
           </IconButton>
         </AccordionSummary>
         <AccordionDetails>
-          <Rewriter setSelectedComponent={setSelectedComponent}/>
+          <Rewriter />
         </AccordionDetails>
       </Accordion>
 

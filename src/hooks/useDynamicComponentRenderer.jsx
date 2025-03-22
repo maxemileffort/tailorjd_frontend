@@ -16,6 +16,8 @@ const useDynamicComponentRenderer = () => {
         return <Profile />;
       case 'docCollections':
         return <DocCollections />;
+        case 'doc-collections': // this is the snack bar link
+          return <DocCollections />;
       case 'workspace':
         return <Workspace />;
       case 'learning':
