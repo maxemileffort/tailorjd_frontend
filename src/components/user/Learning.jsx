@@ -4,19 +4,19 @@ import { Box, Typography, Grid } from '@mui/material';
 const videos = [
     {
         title: "Getting Started & Navigating the Platform",
-        url: "https://www.youtube.com/watch?v=9CTlGLtOPYY", 
+        url: "https://www.youtube.com/watch?v=JllJo_VGCdA", 
     },
     {
         title: "Customizing Your Profile",
-        url: "https://www.loom.com/embed/example3",
+        url: "https://www.youtube.com/watch?v=N_Lkuk-DoYk",
     },
     {
         title: "Basic Workflows - Rewriter",
-        url: "", 
+        url: "https://www.youtube.com/watch?v=oL5l6lHVJEU", 
     },
     {
         title: "Basic Workflows - Drafter",
-        url: "", 
+        url: "https://www.youtube.com/watch?v=dVjjOaFvuxQ", 
     },
     {
         title: "Basic Workflows - Bullet Rewriter",
