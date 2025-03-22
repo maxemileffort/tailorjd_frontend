@@ -18,7 +18,9 @@ const DashboardHome = () => {
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
-                    At the top, you'll see your credit balance. Some actions--like Rewrites and Drafts--take more credits than others. Also, we will refer to Resume as Rez.
+                    At the top, you'll see your credit balance. Credits are what make the app run. 
+                    Some actions--like Rewrites and Drafts--take more credits than others. 
+                    Also, we will refer to Resume as Rez.
                 </Typography>
             </Box>
 
@@ -71,20 +73,19 @@ const DashboardHome = () => {
                     <li>
                         <Typography component="span" textDecoration="underline">
                             Rewriter -
-                        </Typography>{' '}
+                        </Typography>
                         Rewrites your rez to match a JD. This is where you'll probably spend most of your time.
                     </li>
                     <li>
                         <Typography component="span" textDecoration="underline">
                             Drafter -
-                        </Typography>{' '}
+                        </Typography>
                         Takes 3 JDs and creates a rez for you. Good for building an initial rez to add to your profile or use in the Rewriter.
                     </li>
                     <li>
-                        A{' '}
                         <Typography component="span" textDecoration="underline">
                             Bullet Rewriter -
-                        </Typography>{' '}
+                        </Typography>
                         Sometimes, you don't need an entire resume. This tool develops your bullet points under a resume Experience section.
                     </li>
                 </Typography>

@@ -281,7 +281,47 @@ const UserDashboard = ({ role }) => {
     setTourRunning(true);
   };
 
-  const tourSteps = [/* your existing joyride steps */];
+    const tourSteps = [
+    {
+      target: '.sidebar-item-home', // Add a class to the corresponding sidebar item
+      content: 'This is your dashboard home. You’ll find an overview of your account here!',
+    },
+    {
+      target: '.sidebar-item-profile',
+      content: 'Visit your profile to manage your personal information. You can save a rez here to make your workflow faster.',
+    },
+    {
+      target: '.sidebar-item-docCollections',
+      content: 'Access all your saved document collections here.',
+    },
+    {
+      target: '.sidebar-item-workspace',
+      content: 'Use the workspace to draft resumes and cover letters.',
+    },
+    {
+      target: '.sidebar-item-learning',
+      content: 'Find learning materials and tutorials here.',
+    },
+    {
+      target: '.sidebar-item-settings',
+      content: 'Customize your preferences and settings.',
+    },
+    {
+      target: '.sidebar-item-support',
+      content: 'Need help? Visit the support section for assistance.',
+      callback: () => setIsOpen(false),
+    },
+    {
+      target: '.notification-bar-buy-credits', // Add a class to the Buy Credits button
+      content: "Buy credits to keep on keepin' on with the rewrites!",
+    },
+    {
+      target: 'body', // No specific target, just a celebration
+      content: 'Congratulations! You’ve completed the tour!',
+      placement: 'center',
+      disableBeacon: true,
+    },
+  ];
 
   const handleJoyrideCallback = (data) => {
     const { action, index, status } = data;

@@ -20,7 +20,7 @@ const DocCollections = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [prettyPrint, setPrettyPrint] = useState(false);
-  const [sortAscending, setSortAscending] = useState(true);
+  const [sortAscending, setSortAscending] = useState(false);
   const [editingCollectionId, setEditingCollectionId] = useState(null);
   const [newCollectionName, setNewCollectionName] = useState('');
 
@@ -44,7 +44,7 @@ const DocCollections = () => {
     };
 
     fetchCollections();
-    handleToggleSortOrder();
+    // handleToggleSortOrder();
   }, []);
 
   const handleTogglePrettyPrint = () => setPrettyPrint((prev) => !prev);
