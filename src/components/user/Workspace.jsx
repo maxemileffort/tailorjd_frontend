@@ -12,8 +12,11 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import Rewriter from './Rewriter';
 import Drafter from './Drafter';
 import BulletRewriter from './BulletPoints';
+import useDynamicComponentRenderer from '../../hooks/useDynamicComponentRenderer';
 
 const Workspace = () => {
+  const { selectedComponent, setSelectedComponent, renderComponent } =
+    useDynamicComponentRenderer();
   const [rewriterExpanded, setRewriterExpanded] = useState(false);
   const [drafterExpanded, setDrafterExpanded] = useState(false);
   const [bulletExpanded, setBulletExpanded] = useState(false);
@@ -32,7 +35,7 @@ const Workspace = () => {
           </IconButton>
         </AccordionSummary>
         <AccordionDetails>
-          <Rewriter />
+          <Rewriter setSelectedComponent={setSelectedComponent}/>
         </AccordionDetails>
       </Accordion>
 

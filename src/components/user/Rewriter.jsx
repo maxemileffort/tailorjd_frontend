@@ -12,7 +12,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close'; // Import close icon
 import axiosInstance from '../../api/axiosInstance';
 
-const Rewriter = () => {
+const Rewriter = ({ setSelectedComponent }) => {
   const [userResume, setUserResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -204,7 +204,7 @@ const Rewriter = () => {
                 onClose={handleSnackbarClose}
                 message={snackbarMessage}
                 action={
-                    <Button color="inherit" onClick={() => {/* Navigate to doc collections or render component */}}>
+                    <Button color="inherit" onClick={() => setSelectedComponent('docCollections')}>
                         Go to Doc Collections
                     </Button>
                 }
