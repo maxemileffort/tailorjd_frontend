@@ -173,7 +173,7 @@ const UserDashboard = ({ role }) => {
           </Typography>
         </Box>
 
-        <NotificationBar creditBalance={creditBalance} adminMessage={adminMessage} />
+        <NotificationBar creditBalance={creditBalance} adminMessage={adminMessage} messageDestination={'/user-dashboard/home'} />
 
         {subPath === 'home' && (
           <Button

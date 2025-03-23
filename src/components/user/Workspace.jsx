@@ -29,7 +29,7 @@ const Workspace = () => {
     <Box sx={{ width: '100%', maxWidth: '1200px', margin: '0 auto', p: 2 }}>
       <Accordion expanded={rewriterExpanded} onChange={toggleRewriter}>
         <AccordionSummary sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6">Rewriter</Typography>
+          <Typography variant="h6">Rewriter (3 Credits)</Typography>
           <IconButton>
             {rewriterExpanded ? <RemoveIcon /> : <AddIcon />}
           </IconButton>
@@ -41,7 +41,7 @@ const Workspace = () => {
 
       <Accordion expanded={drafterExpanded} onChange={toggleDrafter}>
         <AccordionSummary sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6">Drafter</Typography>
+          <Typography variant="h6">Drafter (5 Credits)</Typography>
           <IconButton>
             {drafterExpanded ? <RemoveIcon /> : <AddIcon />}
           </IconButton>
@@ -53,7 +53,7 @@ const Workspace = () => {
 
       <Accordion expanded={bulletExpanded} onChange={toggleBullet}>
         <AccordionSummary sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="h6">Bullet Rewriter</Typography>
+          <Typography variant="h6">Bullet Rewriter (1 Credit)</Typography>
           <IconButton>
             {bulletExpanded ? <RemoveIcon /> : <AddIcon />}
           </IconButton>

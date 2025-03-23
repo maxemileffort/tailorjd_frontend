@@ -102,22 +102,51 @@ const DashboardHome = () => {
             </Box>
 
             <Box mt={4}>
-                <Typography variant="h4" gutterBottom>
-                    Coming Soon
-                </Typography>
-                <Typography variant="body1" color="textSecondary">
-                    The following features are in the works (in no particular order):
-                </Typography>
-                <Typography variant="body1" color="textSecondary" component="ul" pl={2}>
-                    <li>Google Drive Integration - Pick resumes from GDrive and also save directly to Gdrive.</li>
-                    <li><s>Saving Resumes to your profile.</s> Just copy and paste them in now.</li>
-                    <li><s>Resume Drafting - Done! Check it out in Workspaces.</s></li>
-                    <li>Browser Extension - For saving JDs faster.</li>
-                    <li>Job Hunt Tracking - For tracking status of apps and rezs sent.</li>
-                    <li>Resume Templates - To make them look nice.</li>
-                    <li>LinkedIn Profile Optimization - To put your best foot forward, no matter where hiring managers are looking.</li>
-                </Typography>
-            </Box>
+  <Typography variant="h4" gutterBottom>
+    Coming Soon
+  </Typography>
+  <Typography variant="body1" color="textSecondary">
+    The following features are in the works (in no particular order):
+  </Typography>
+  <Typography variant="body1" color="textSecondary" component="ul" pl={2}>
+    <li>
+      ⏳ Google Drive Integration – Pick resumes from GDrive and also save directly to GDrive.
+    </li>
+
+    <li>
+      <s>✅ Saving Resumes to your profile.</s>
+      <ul>
+        <li>✅ You can now copy and paste your resume directly into your profile.</li>
+        <li>📎 Upload functionality will be added later.</li>
+      </ul>
+    </li>
+
+    <li>
+      <s>✅ Resume Drafting – Done! Check it out in Workspaces.</s>
+      <ul>
+        <li>✅ Add up to 3 JDs to generate a brand-new resume.</li>
+        <li>✅ Uses AI to align content with target roles.</li>
+      </ul>
+    </li>
+
+    <li>
+      ⏳ Browser Extension – For saving JDs faster.
+    </li>
+
+    <li>
+      ⏳ Job Hunt Tracking – For tracking status of apps and rezs sent.
+    </li>
+
+    <li>
+      ⏳ Resume Templates – To make these newly minted resumes look amazing.
+    </li>
+
+    <li>
+      ⏳ LinkedIn Profile Optimization – To put your best foot forward, no matter where hiring managers are looking.
+    </li>
+  </Typography>
+</Box>
+
         </Box>
     );
 };

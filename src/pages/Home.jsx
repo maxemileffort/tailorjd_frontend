@@ -27,9 +27,11 @@ const Home = () => {
           <Typography variant="h3" gutterBottom>
             Land Your Dream Job Faster
           </Typography>
-          <Typography variant="h6" color="textSecondary" paragraph>
-            Use cutting-edge technology to customize your job hunt and maximize efficiency. TailorJD helps you stand out.
+          <Typography variant="body1" color="textSecondary" >
+            TailorJD customizes your resume and cover letter for each job description (JD) using AI — no wondering, no guessing. 
+            Just tailored applications that get interviews.
           </Typography>
+
           <Button
             variant="contained"
             color="primary"
@@ -44,7 +46,7 @@ const Home = () => {
         {/* Features Section */}
 <Box id="features" py={6}>
   <Typography variant="h4" gutterBottom>
-    Why Choose TailorJD?
+    How TailorJD Helps You Get Hired
   </Typography>
   <Grid container spacing={4}>
     <Grid item xs={12} md={4}>

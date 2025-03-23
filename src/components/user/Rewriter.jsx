@@ -19,6 +19,7 @@ const Rewriter = () => {
   const [userResume, setUserResume] = useState('');
   const [jobDescription, setJobDescription] = useState('');
   const [loading, setLoading] = useState(false);
+  const [jobRunning, setRunning] = useState(false);
   const [error, setError] = useState(null);
   const [errorInfo, setErrorInfo] = useState(null);
   const [isFetchingResume, setIsFetchingResume] = useState(true);
@@ -52,6 +53,11 @@ const Rewriter = () => {
     setLoading(true);
     setError(null);
     setErrorInfo(null);
+    setRunning(true);
+    setJobId(null);
+
+    await new Promise((res) => setTimeout(res, 2000)); // Delay for UX
+
     try {
       const response = await axiosInstance.post('/rewrites', {
         user_resume: userResume,
@@ -75,6 +81,7 @@ const Rewriter = () => {
   };
   
   const checkJobStatus = (jobId) => {
+    setRunning(true);
     const interval = setInterval(async () => {
       try {
         const response = await axiosInstance.get(`/rewrites/job-status/${jobId}`);
@@ -91,6 +98,7 @@ const Rewriter = () => {
             
             // Show success snackbar
             setSnackbarMessage("Job complete!");
+            setRunning(false);
             setSnackbarOpen(true);
           }
         }
@@ -187,6 +195,12 @@ const Rewriter = () => {
       {errorInfo}
       </Alert>
     )}
+    {!jobRunning && !loading && jobId && (
+      <Alert severity="success" sx={{ mb: 2 }}>
+        Your rewrite has finished! You can view it in the Doc Collections tab.
+      </Alert>
+    )}
+
     <Button
     variant="contained"
     size="large"
@@ -196,6 +210,7 @@ const Rewriter = () => {
     >
     {loading ? 'Processing...' : 'Begin Rewrite'}
     </Button>
+    {jobRunning ? <><br></br><CircularProgress size={24} color="inherit" /></> : <></>}
     <br />
     <Typography variant="body1" gutterBottom>
     The process aligns your resume with this job description. It may take a minute or two, so grab a coffee!
@@ -203,7 +218,7 @@ const Rewriter = () => {
     {/* Snackbar for job completion message */}
     <Snackbar
                 open={snackbarOpen}
-                autoHideDuration={4000} // Toast duration
+                autoHideDuration={10000} // Toast duration
                 onClose={handleSnackbarClose}
                 message={snackbarMessage}
                 action={

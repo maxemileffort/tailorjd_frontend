@@ -19,8 +19,8 @@ const DocCollections = () => {
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [prettyPrint, setPrettyPrint] = useState(false);
-  const [sortAscending, setSortAscending] = useState(false);
+  const [prettyPrint, setPrettyPrint] = useState(true);
+  const [sortAscending, setSortAscending] = useState(true);
   const [editingCollectionId, setEditingCollectionId] = useState(null);
   const [newCollectionName, setNewCollectionName] = useState('');
 
@@ -34,7 +34,12 @@ const DocCollections = () => {
         }
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         const response = await axiosInstance.get('/rewrites/doc-collections');
-        setCollections(response.data.collections);
+        const respCollections = response.data.collections;
+        const sortedDescending = [...respCollections].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setCollections(sortedDescending);
+
       } catch (err) {
         console.error('Error fetching collections:', err);
         setError('An error occurred while fetching collections.');
@@ -44,7 +49,6 @@ const DocCollections = () => {
     };
 
     fetchCollections();
-    // handleToggleSortOrder();
   }, []);
 
   const handleTogglePrettyPrint = () => setPrettyPrint((prev) => !prev);
@@ -54,8 +58,8 @@ const DocCollections = () => {
     setCollections((prevCollections) =>
       [...prevCollections].sort((a, b) =>
         sortAscending
-          ? new Date(b.createdAt) - new Date(a.createdAt) // Sort descending
-          : new Date(a.createdAt) - new Date(b.createdAt) // Sort ascending
+          ?  new Date(a.createdAt) - new Date(b.createdAt) // Sort ascending
+          : new Date(b.createdAt) - new Date(a.createdAt) // Sort descending 
       )
     );
   };
@@ -104,7 +108,7 @@ const DocCollections = () => {
               alignItems: 'center',
               position: 'sticky',
               top: 0,
-              backgroundColor: 'white',
+              backgroundColor: '#f5f5f5',
               zIndex: 1,
               paddingBottom: 1,
             }}
@@ -177,7 +181,7 @@ const DocCollections = () => {
             <FormControlLabel
               control={
                 <Switch
-                  checked={!sortAscending}
+                  checked={sortAscending}
                   onChange={handleToggleSortOrder}
                   color="primary"
                 />
