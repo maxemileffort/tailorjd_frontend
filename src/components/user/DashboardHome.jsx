@@ -1,14 +1,23 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import VideoPlayer from '../VideoPlayer';
+import DismissibleCard from '../DismissibleCard';
 
 const DashboardHome = () => {
-  
+    const firstVideo = {
+        title: "Getting Started & Navigating the Platform",
+        url: "https://www.youtube.com/watch?v=JllJo_VGCdA",
+    };
 
     return (
         <Box>
             <Typography variant="h4" gutterBottom>
                 Welcome to Your Dashboard
             </Typography>
+
+            <DismissibleCard id="dashboard-video-card">
+                <VideoPlayer title={firstVideo.title} url={firstVideo.url} />
+            </DismissibleCard>
 
             <Box mb={2}>
                 <Typography variant="body1" color="textSecondary">
