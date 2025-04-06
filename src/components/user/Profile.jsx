@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Box,
     Typography,
-    TextField,
-    TextareaAutosize,
-    Button,
     CircularProgress,
     Alert,
-    Input, // Added for file input styling
-    FormControl, // Added for form structure
-    FormLabel, // Added for accessibility
 } from '@mui/material';
 import axiosInstance from '../../api/axiosInstance';
+
+// Import the new sub-components
+import ProfileInfoForm from './ProfileInfoForm';
+import ResumeSection from './ProfileResumeSection';
+import ProfileActions from './ProfileActions';
 
 const Profile = () => {
     const defaultProfileData = {
@@ -24,12 +23,11 @@ const Profile = () => {
     
     const [profileData, setProfileData] = useState(defaultProfileData);
     const [loading, setLoading] = useState(true);
-    const [saving, setSaving] = useState(false); // For text field saving
-    const [uploading, setUploading] = useState(false); // For file upload saving
-    const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
-    const [selectedFile, setSelectedFile] = useState(null); // State for the selected file
-    const fileInputRef = React.useRef(null); // Ref for the file input
+    const [saving, setSaving] = useState(false); // Only for saving text fields via handleSave
+    const [error, setError] = useState(null); // General errors for this component
+    const [successMessage, setSuccessMessage] = useState(null); // General success messages
+
+    // --- Effects ---
 
     // Fetch user profile data
     useEffect(() => {
@@ -51,78 +49,35 @@ const Profile = () => {
                 setLoading(false);
             }
         };
-        
+
         fetchProfile();
-    }, []);
-    
-    // Handle file selection
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file && (file.type === 'application/pdf' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
-            setSelectedFile(file);
-            setError(null); // Clear previous errors
-        } else {
-            setSelectedFile(null);
-            setError('Invalid file type. Please select a PDF or DOCX file.');
-        }
-    };
+    }, []); // Only run on mount
 
-    // Handle file upload
-    const handleFileUpload = async () => {
-        if (!selectedFile) {
-            setError('Please select a file to upload.');
-            return;
-        }
+    // --- Handlers ---
 
-        setUploading(true);
-        setSuccessMessage(null);
-        setError(null);
-
-        const formData = new FormData();
-        formData.append('resume', selectedFile); // 'resume' should match the backend field name
-
-        try {
-            const token = sessionStorage.getItem('jwtToken');
-            if (!token) {
-                window.location.href = '/login';
-                return;
-            }
-
-            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            const response = await axiosInstance.put('/users/resume/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            // Update the resume text field with the parsed content from the backend
-            setProfileData((prevData) => ({
-                ...prevData,
-                currentResume: response.data.resumeText,
-            }));
-            setSuccessMessage(response.data.message || 'Resume uploaded and parsed successfully!');
-            setSelectedFile(null); // Clear the selected file state
-            if (fileInputRef.current) {
-                fileInputRef.current.value = ''; // Clear the file input visually
-            }
-        } catch (err) {
-            const errorMsg = err.response?.data?.error || 'Failed to upload resume.';
-            console.error('Error uploading resume:', err);
-            setError(errorMsg);
-        } finally {
-            setUploading(false);
-        }
-    };
-
-    // Handle input changes for text fields
+    // Handle input changes for text fields (passed to ProfileInfoForm)
     const handleChange = (field, value) => {
         setProfileData((prevData) => ({
             ...prevData,
             [field]: value,
         }));
+        // Clear messages on change
+        if (successMessage) setSuccessMessage(null);
+        if (error) setError(null);
     };
-    
-    // Save profile data
+
+    // Handle updates to resume text coming from ResumeSection
+    const handleResumeUpdate = useCallback((newResumeText) => {
+        setProfileData((prevData) => ({
+            ...prevData,
+            currentResume: newResumeText,
+        }));
+         // Clear messages on change
+        if (successMessage) setSuccessMessage(null);
+        if (error) setError(null);
+    }, [successMessage, error]); // Include dependencies that might clear messages
+
+    // Save profile data (only text fields managed by this component)
     const handleSave = async () => {
         setSaving(true);
         setSuccessMessage(null);
@@ -146,15 +101,29 @@ const Profile = () => {
             setSaving(false);
         }
     };
-        
-        // Reset profile data
-        const handleReset = () => {
-            setProfileData(defaultProfileData);
-            setSuccessMessage(null);
-            setError(null);
-        };
-        
-        if (loading) {
+
+    // Reset profile data (refetch from server for consistency)
+    const handleReset = async () => {
+        setLoading(true); // Show loading indicator while refetching
+        setSuccessMessage(null);
+        setError(null);
+        try {
+            const token = sessionStorage.getItem('jwtToken');
+            if (!token) { window.location.href = '/login'; return; }
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            const response = await axiosInstance.get('/users/demographics');
+            setProfileData(response.data);
+        } catch (err) {
+            console.error('Error refetching profile data on reset:', err);
+            setError('Failed to reload profile data.');
+            // Optionally keep old data or set to default
+            // setProfileData(defaultProfileData);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) {
             return (
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                 <CircularProgress />
@@ -170,109 +139,45 @@ const Profile = () => {
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
             Edit your personal information below.
             </Typography>
-            
+
+            {/* Display general errors/success messages */}
             {error && (
-                <Alert severity="error" sx={{ marginBottom: 2 }}>
+                <Alert severity="error" sx={{ marginBottom: 2 }} onClose={() => setError(null)}>
                 {error}
                 </Alert>
             )}
-            
             {successMessage && (
-                <Alert severity="success" sx={{ marginBottom: 2 }}>
+                <Alert severity="success" sx={{ marginBottom: 2 }} onClose={() => setSuccessMessage(null)}>
                 {successMessage}
                 </Alert>
             )}
-            
+
+            {/* Render sub-components */}
             <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <TextField
-            label="First Name"
-            value={profileData.f_name}
-            onChange={(e) => handleChange('f_name', e.target.value)}
-            fullWidth
-            />
-            <TextField
-            label="Last Name"
-            value={profileData.l_name}
-            onChange={(e) => handleChange('l_name', e.target.value)}
-            fullWidth
-            />
-            <Typography variant="body1">What job descriptions are you targeting for new employment?</Typography>
-            <TextField
-            label="Job Description Target"
-            value={profileData.jd_target}
-            onChange={(e) => handleChange('jd_target', e.target.value)}
-            fullWidth
-            />
-            <Typography variant="body1">What job category does your current work fall under?</Typography>
-            <TextField
-            label="Current Industry"
-            value={profileData.currentIndustry}
-            onChange={(e) => handleChange('currentIndustry', e.target.value)}
-            fullWidth
-            />
-
-            {/* Resume Section */}
-            <Typography variant="h6" sx={{ marginTop: 2 }}>Resume</Typography>
-            <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                Paste your resume text below, or upload a PDF/DOCX file to automatically parse and save the text.
-            </Typography>
-
-            {/* File Upload Input */}
-             <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                <FormLabel sx={{ marginBottom: 1 }}>Upload Resume (PDF or DOCX)</FormLabel>
-                <Input
-                    type="file"
-                    inputRef={fileInputRef} // Assign ref
-                    onChange={handleFileChange}
-                    inputProps={{ accept: '.pdf,.docx' }} // Specify accepted file types
-                    sx={{ marginBottom: 1 }}
+                <ProfileInfoForm
+                    profileData={profileData}
+                    handleChange={handleChange}
+                    disabled={saving} // Disable form while saving text changes
                 />
-                {selectedFile && (
-                    <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                        Selected file: {selectedFile.name}
-                    </Typography>
-                )}
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleFileUpload}
-                    disabled={!selectedFile || uploading || saving} // Disable if no file, uploading, or saving text fields
-                    sx={{ alignSelf: 'flex-start' }} // Align button to the left
-                >
-                    {uploading ? <CircularProgress size={24} /> : 'Upload Resume'}
-                </Button>
-            </FormControl>
 
-            {/* Resume Text Area */}
-            <TextField
-            label="Current Resume Text"
-            value={profileData.currentResume}
-            onChange={(e) => handleChange('currentResume', e.target.value)}
-            multiline
-            rows={10}
-            fullWidth
-            />
-            <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSave}
-            disabled={saving || uploading} // Disable if saving text or uploading file
-            >
-            {saving ? <CircularProgress size={24} /> : 'Save Text Changes'}
-            </Button>
-            <Button
-            variant="outlined"
-            color="secondary"
-            onClick={handleReset}
-            disabled={saving || uploading} // Disable if saving text or uploading file
-            >
-            Reset Fields
-            </Button>
-            </Box>
+                <ResumeSection
+                    // Pass only the initial resume text. ResumeSection manages its own text state.
+                    initialResumeText={profileData.currentResume}
+                    // Callback to update the main profileData state when resume text changes (e.g., after upload/parse)
+                    onResumeUpdate={handleResumeUpdate}
+                    // Disable resume section if main profile text fields are saving
+                    disabled={saving}
+                />
+
+                <ProfileActions
+                    onSave={handleSave}
+                    onReset={handleReset}
+                    isSaving={saving}
+                    // isUploading is managed within ResumeSection, actions only care about parent saving state
+                />
             </Box>
             </Box>
         );
     };
-    
+
     export default Profile;

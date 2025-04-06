@@ -110,9 +110,13 @@ const DashboardHome = () => {
                 </Typography>
                 <Typography variant="body1" color="textSecondary" component="ul" pl={2}>
                     <li>
-                        ⏳ Google Drive Integration – Pick resumes from GDrive and also save directly to GDrive.
+                        <s>⏳ Google Drive Integration</s>
+                        <ul>
+                            <li>✅ Pick resumes (PDF/GDocs) from GDrive to use in your profile.</li>
+                            <li>📎 Saving documents directly to GDrive will be added later.</li>
+                        </ul>
                     </li>
-                    
+
                     <li>
                         <s>⏳ Saving Resumes to your profile.</s>
                     <ul>
