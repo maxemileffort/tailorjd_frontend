@@ -14,19 +14,16 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (
-      error.response && error.response.status === 401
-    ) {
-      // Clear local storage or cookies
+    // Check if the error is a 401 Unauthorized response
+    if (error.response && error.response.status === 401) {
+      console.log('Axios interceptor caught 401. Clearing token.');
+      // Clear the token from session storage.
+      // The UserContext will detect this change and handle the logout state and redirect.
       sessionStorage.removeItem('jwtToken');
-      // Check if the URL contains 'dashboard'
-      if (error.config.url.includes('dashboard') ){
-        // Redirect to login page
-      window.location.href = '/login';
-      console.log('Redirecting due to 401 on a dashboard route.');
-      }
-      
+      // Also clear the default header in case it was set
+      delete axiosInstance.defaults.headers.common['Authorization'];
     }
+    // Important: Always reject the promise so the calling code knows the request failed.
     return Promise.reject(error);
   }
 );
