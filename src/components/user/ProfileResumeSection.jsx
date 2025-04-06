@@ -300,7 +300,7 @@ const ResumeSection = ({ initialResumeText, onResumeUpdate, disabled: parentDisa
                         disabled={!selectedFile || isSectionDisabled}
                         sx={{ alignSelf: 'flex-start', mt: 1 }}
                     >
-                        {uploading && selectedFile ? <CircularProgress size={24} /> : 'Upload from Device'}
+                        {uploading && selectedFile ? <CircularProgress size={24} /> : 'Read & Save Resume'}
                     </Button>
                 </FormControl>
 
