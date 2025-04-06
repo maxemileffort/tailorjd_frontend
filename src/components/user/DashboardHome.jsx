@@ -117,7 +117,7 @@ const DashboardHome = () => {
                         <s>⏳ Saving Resumes to your profile.</s>
                     <ul>
                         <li>✅ You can now copy and paste your resume directly into your profile.</li>
-                        <li>📎 Upload functionality will be added later.</li>
+                        <li>✅ Upload functionality (PDF/DOCX) is now available.</li>
                     </ul>
                     </li>
                     
@@ -152,4 +152,3 @@ const DashboardHome = () => {
 };
 
 export default DashboardHome;
-
